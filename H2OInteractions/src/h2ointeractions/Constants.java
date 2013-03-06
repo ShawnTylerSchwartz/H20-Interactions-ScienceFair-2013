@@ -10,4 +10,8 @@ package h2ointeractions;
  */
 public class Constants {
     
+    public static final long kConstant = 1;
+    public static final long hydrogenDipoleMoment = 1;
+    public static final long oxygenDipoleMoment = 1;
+
 }
