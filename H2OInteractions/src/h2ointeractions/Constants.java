@@ -9,9 +9,7 @@ package h2ointeractions;
  * @version 1.0 - 2013 LA County Science Fair Edition
  */
 public class Constants {
-    
-    public static final long kConstant = 1;
-    public static final long hydrogenDipoleMoment = 1;
-    public static final long oxygenDipoleMoment = 1;
-
+    public static final double kConstant = 8.9875517873681764;
+    public static final double hydrogenDipoleMoment = 1; //TODO: Find real value.
+    public static final double oxygenDipoleMoment = 1; //TODO: Find real value.
 }
