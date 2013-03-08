@@ -35,17 +35,6 @@ public class H2OInteractions {
     public static void main(String[] args) throws IOException {
 //        Random moleculeRandom = new Random();
 //        int testVar = moleculeRandom.nextInt(50) + 1;
-
-//        double moleculePositions[] = new double[2];
-//        for (int n = 0; n < 2; n++) {
-//          for (int i = 0; i < 2; i++) {
-//            moleculePositions[i] = (double) (Math.random()*10);
-//          }
-//          arrayContentstoPrint = Arrays.toString(moleculePositions);
-//          //sopl(Arrays.toString(moleculePositions)); 
-//          sopl(arrayContentstoPrint);
-//        }
-           
         
         try {
             // Create file 
