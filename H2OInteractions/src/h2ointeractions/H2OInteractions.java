@@ -35,6 +35,10 @@ public class H2OInteractions {
     public static double yOneArray;
     public static double yTwoArray;
     public static double moleculePositions[];
+    public static Object x1;
+    public static Object y1;
+    public static Object x2;
+    public static Object y2;
     
     public static void main(String[] args) throws IOException {
 //        Random moleculeRandom = new Random();
@@ -46,18 +50,19 @@ public class H2OInteractions {
             BufferedWriter outputWriter = new BufferedWriter(fstream);
             //out.write("Test output");
             //out.write("Test: "+ Arrays.toString(moleculePositions));
-            moleculePositions = new double[2];
-            for (int n = 0; n < 2; n++) {
-                for (int i = 0; i < 2; i++) {
-                    moleculePositions[i] = (double) (Math.random()*10);
-                }
+            moleculePositions = new double[4];
+            for (int n = 0; n < 4; n++) {
+//                for (int i = 0; i < 2; i++) {
+                    moleculePositions[n] = (double) (Math.random()*10);
+//                }
             arrayContentstoPrint = Arrays.toString(moleculePositions);
             
             //sopl(Arrays.toString(moleculePositions)); 
-            sopl(arrayContentstoPrint);
-            outputWriter.write("\n" + arrayContentstoPrint);
+            
             
         }
+            sopl(arrayContentstoPrint);
+            outputWriter.write("\n" + arrayContentstoPrint);
 
             //Close the output inputStream
             outputWriter.close();
@@ -68,21 +73,15 @@ public class H2OInteractions {
         System.out.println(readFile("output.txt"));
         
         for (int i = 0; i < 2; i++) {
-            Object o1 = moleculePositions[0];
-            Object o2 = moleculePositions[1];
-            System.out.println(o1);
-            System.out.println(o2);
+            x1 = moleculePositions[0];
+            y1 = moleculePositions[1];
+            x2 = moleculePositions[2];
+            y2 = moleculePositions[3];
         }
-        
-        
-//        int[][] array = new int[2][3];
-//
-//        for (int i = 0 ; i < array.length ; i++) {
-//            for (int j = 0 ; j < array.length; j++) {
-//            int col = array[j][i];
-//            System.out.println(col);
-//            }
-//        }
+            System.out.println(x1);
+            System.out.println(y1);
+            System.out.println(x2);
+            System.out.println(y2);
     }
    
     private static String readFile(String path) throws IOException {
