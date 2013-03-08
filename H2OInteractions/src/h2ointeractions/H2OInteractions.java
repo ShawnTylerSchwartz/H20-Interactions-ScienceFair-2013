@@ -30,7 +30,11 @@ public class H2OInteractions {
     public static double energy;
     public static double totalEnergy;
     public static String arrayContentstoPrint;
-    
+    public static double xOneArray;
+    public static double xTwoArray;
+    public static double yOneArray;
+    public static double yTwoArray;
+    public static double moleculePositions[];
     
     public static void main(String[] args) throws IOException {
 //        Random moleculeRandom = new Random();
@@ -42,16 +46,19 @@ public class H2OInteractions {
             BufferedWriter outputWriter = new BufferedWriter(fstream);
             //out.write("Test output");
             //out.write("Test: "+ Arrays.toString(moleculePositions));
-            double moleculePositions[] = new double[2];
+            moleculePositions = new double[2];
             for (int n = 0; n < 2; n++) {
                 for (int i = 0; i < 2; i++) {
                     moleculePositions[i] = (double) (Math.random()*10);
                 }
             arrayContentstoPrint = Arrays.toString(moleculePositions);
+            
             //sopl(Arrays.toString(moleculePositions)); 
             sopl(arrayContentstoPrint);
             outputWriter.write("\n" + arrayContentstoPrint);
+            
         }
+
             //Close the output inputStream
             outputWriter.close();
         }
@@ -59,6 +66,23 @@ public class H2OInteractions {
             System.err.println("Error: " + e.getMessage());
         }
         System.out.println(readFile("output.txt"));
+        
+        for (int i = 0; i < 2; i++) {
+            Object o1 = moleculePositions[0];
+            Object o2 = moleculePositions[1];
+            System.out.println(o1);
+            System.out.println(o2);
+        }
+        
+        
+//        int[][] array = new int[2][3];
+//
+//        for (int i = 0 ; i < array.length ; i++) {
+//            for (int j = 0 ; j < array.length; j++) {
+//            int col = array[j][i];
+//            System.out.println(col);
+//            }
+//        }
     }
    
     private static String readFile(String path) throws IOException {
