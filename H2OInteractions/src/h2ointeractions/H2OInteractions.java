@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
+import java.util.Arrays;
 import java.util.Random;
+import sun.nio.ch.SolarisAsynchronousChannelProvider;
 
 /**
  * @author Shawn Tyler Schwartz
@@ -25,9 +27,11 @@ public class H2OInteractions {
     public static double yPos;
     public static double xBoundary;
     public static double yBoundary;
-    public static double distance;
+    public static double totalDistance;
     public static double energy;
     public static double totalEnergy;
+//    public static int[] moleculePositions;
+
     
     
     public static void main(String[] args) throws IOException {
@@ -35,18 +39,34 @@ public class H2OInteractions {
 //        array = new int[2];
 //        array[0] = 2;
 //        array[1] = 3;
-        int rangeStart = 1;
-        int rangeEnd = 1000;
-        Random random = new Random();
-        for (int i = 1; i <= 6; ++i){
-            showRandomGeneratedPosition(rangeStart, rangeEnd, random);
+
+//        Random moleculeRandom = new Random();
+////        int testVar = moleculeRandom.nextInt(50) + 1;
+//        
+//        moleculePositions = new int[1];
+//        moleculePositions[0] = moleculeRandom.nextInt(50) + 1;
+//        moleculePositions[1] = 3;
+//        
+        int myarray[] = new int [10];
+
+        for (int i = 0 ; i < 10 ; i++) {
+            myarray [i] = (int) (Math.random () * 10);
         }
+        sopl(Arrays.toString(myarray));
+
+        
+//        int rangeStart = 1;
+//        int rangeEnd = 1000;
+//        Random random = new Random();
+//        for (int i = 1; i <= 6; ++i){
+//            showRandomGeneratedPosition(rangeStart, rangeEnd, random);
+//        }
         try {
             // Create file 
             FileWriter fstream = new FileWriter("output.txt");
             BufferedWriter out = new BufferedWriter(fstream);
-            out.write("Test output");
-            //out.write("Test: "+ Arrays.toString(array));
+            //out.write("Test output");
+            //out.write("Test: "+ Arrays.toString(moleculePositions));
             //Close the output stream
             out.close();
         }
@@ -67,6 +87,8 @@ public class H2OInteractions {
             finally {
                 stream.close();
             }
+        
+        
     }
     
     private static void showRandomGeneratedPosition(int aStart, int aEnd, Random aRandom) {
@@ -84,4 +106,18 @@ public class H2OInteractions {
     private static void sopl(String userInput){
         System.out.println(userInput);
     }
+    
+//    public double calculateColumbForce(double momentOne, double momentTwo) {
+//        for(int i = 1; i < 10; i++) {
+//            energy = ((Constants.kConstant*momentOne*momentTwo)/totalDistance);
+//            energy+=totalEnergy;
+//        }
+//        return totalEnergy;
+//    }
+//    
+//    public static double calculateDistance(double xPosOne, double xPosTwo, double yPosOne, double yPosTwo, double tester) {
+//        totalDistance = Math.sqrt(((yPosTwo-yPosOne)*(yPosTwo-yPosOne))+((xPosTwo-xPosOne)*(xPosTwo-xPosOne)));
+//        return tester+=totalDistance;
+//    }
+    
 }
