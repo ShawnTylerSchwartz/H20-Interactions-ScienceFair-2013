@@ -10,7 +10,6 @@ import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Random;
-import sun.nio.ch.SolarisAsynchronousChannelProvider;
 
 /**
  * @author Shawn Tyler Schwartz
@@ -30,43 +29,24 @@ public class H2OInteractions {
     public static double totalDistance;
     public static double energy;
     public static double totalEnergy;
-//    public static int[] moleculePositions;
-
     
     
     public static void main(String[] args) throws IOException {
-//        int[] array;
-//        array = new int[2];
-//        array[0] = 2;
-//        array[1] = 3;
-
 //        Random moleculeRandom = new Random();
-////        int testVar = moleculeRandom.nextInt(50) + 1;
-//        
-//        moleculePositions = new int[1];
-//        moleculePositions[0] = moleculeRandom.nextInt(50) + 1;
-//        moleculePositions[1] = 3;
-//        
-        int myarray[] = new int [10];
+//        int testVar = moleculeRandom.nextInt(50) + 1;
 
-        for (int i = 0 ; i < 10 ; i++) {
-            myarray [i] = (int) (Math.random () * 10);
+        double moleculePositions[] = new double[2];
+        for (int i = 0; i < 2; i++) {
+            moleculePositions[i] = (double) (Math.random()*10);
         }
-        sopl(Arrays.toString(myarray));
-
+        sopl(Arrays.toString(moleculePositions));        
         
-//        int rangeStart = 1;
-//        int rangeEnd = 1000;
-//        Random random = new Random();
-//        for (int i = 1; i <= 6; ++i){
-//            showRandomGeneratedPosition(rangeStart, rangeEnd, random);
-//        }
         try {
             // Create file 
             FileWriter fstream = new FileWriter("output.txt");
             BufferedWriter out = new BufferedWriter(fstream);
             //out.write("Test output");
-            //out.write("Test: "+ Arrays.toString(moleculePositions));
+            out.write("Test: "+ Arrays.toString(moleculePositions));
             //Close the output stream
             out.close();
         }
@@ -87,8 +67,6 @@ public class H2OInteractions {
             finally {
                 stream.close();
             }
-        
-        
     }
     
     private static void showRandomGeneratedPosition(int aStart, int aEnd, Random aRandom) {
