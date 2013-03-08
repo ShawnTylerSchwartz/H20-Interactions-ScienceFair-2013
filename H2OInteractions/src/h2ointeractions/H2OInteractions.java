@@ -29,26 +29,42 @@ public class H2OInteractions {
     public static double totalDistance;
     public static double energy;
     public static double totalEnergy;
+    public static String arrayContentstoPrint;
     
     
     public static void main(String[] args) throws IOException {
 //        Random moleculeRandom = new Random();
 //        int testVar = moleculeRandom.nextInt(50) + 1;
 
-        double moleculePositions[] = new double[2];
-        for (int i = 0; i < 2; i++) {
-            moleculePositions[i] = (double) (Math.random()*10);
-        }
-        sopl(Arrays.toString(moleculePositions));        
+//        double moleculePositions[] = new double[2];
+//        for (int n = 0; n < 2; n++) {
+//          for (int i = 0; i < 2; i++) {
+//            moleculePositions[i] = (double) (Math.random()*10);
+//          }
+//          arrayContentstoPrint = Arrays.toString(moleculePositions);
+//          //sopl(Arrays.toString(moleculePositions)); 
+//          sopl(arrayContentstoPrint);
+//        }
+           
         
         try {
             // Create file 
             FileWriter fstream = new FileWriter("output.txt");
-            BufferedWriter out = new BufferedWriter(fstream);
+            BufferedWriter outputWriter = new BufferedWriter(fstream);
             //out.write("Test output");
-            out.write("Test: "+ Arrays.toString(moleculePositions));
-            //Close the output stream
-            out.close();
+            //out.write("Test: "+ Arrays.toString(moleculePositions));
+            double moleculePositions[] = new double[2];
+            for (int n = 0; n < 2; n++) {
+                for (int i = 0; i < 2; i++) {
+                    moleculePositions[i] = (double) (Math.random()*10);
+                }
+            arrayContentstoPrint = Arrays.toString(moleculePositions);
+            //sopl(Arrays.toString(moleculePositions)); 
+            sopl(arrayContentstoPrint);
+            outputWriter.write("\n" + arrayContentstoPrint);
+        }
+            //Close the output inputStream
+            outputWriter.close();
         }
         catch (Exception e){//Catch exception if any
             System.err.println("Error: " + e.getMessage());
@@ -57,15 +73,15 @@ public class H2OInteractions {
     }
    
     private static String readFile(String path) throws IOException {
-        FileInputStream stream = new FileInputStream(new File(path));
+        FileInputStream inputStream = new FileInputStream(new File(path));
         try {
-            FileChannel fc = stream.getChannel();
+            FileChannel fc = inputStream.getChannel();
             MappedByteBuffer bb = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size());
             //Instead of using default, pass in a decoder.
             return Charset.defaultCharset().decode(bb).toString();
         }
             finally {
-                stream.close();
+                inputStream.close();
             }
     }
     
@@ -96,6 +112,5 @@ public class H2OInteractions {
 //    public static double calculateDistance(double xPosOne, double xPosTwo, double yPosOne, double yPosTwo, double tester) {
 //        totalDistance = Math.sqrt(((yPosTwo-yPosOne)*(yPosTwo-yPosOne))+((xPosTwo-xPosOne)*(xPosTwo-xPosOne)));
 //        return tester+=totalDistance;
-//    }
-    
+//    }   
 }
