@@ -18,12 +18,29 @@ import java.util.Random;
  * @assistants Wun Chiou & Daniel Perahya
  * @fileName "H2OInteractions.java" (Main Class)
  * @version 1.0 - 2013 LA County Science Fair Edition
- */
+ **/
 //NOTE: Starting with 2 molecules first.
 
 public class H2OInteractions {
     
-    //Array
+    /* REACTION MAP:
+     * Hydrogen-Hydrogen Bonds:
+     *  1. leftHydrogenOnex1y1 --> leftHydrogenTwox2y2
+     *  2. leftHydrogenOnex1y1 --> rightHydrogenTwox2y2
+     *  3. rightHydrogenOnex1y1 --> leftHydrogenTwox2y2
+     *  4. rightHydrogenOnex1y1 --> rightHydrogenTwox2y2
+     * 
+     * Oxygen-Oxygen Bond:
+     *  5. oxygenOnex1y1 --> oxygenTwox2y2
+     * 
+     * Hydrogen-Oxygen Bonds:
+     *  6. leftHydrogenOnex1y1 --> oxygenOnex1y1
+     *  7. rightHydrogenOnex1y1 --> oxygenTwox2y2
+     *  8. leftHydrogenTwox2y2 --> oxygenOnex1y1
+     *  9. rightHydrogenTwox2y2 --> oxygenOnex1y1
+     */
+    
+    //Arrays
     public static double moleculePositions[];
     public static String arrayContentstoPrint;
     
@@ -140,6 +157,10 @@ public class H2OInteractions {
 //        energy += totalEnergy;
 //        return totalEnergy;
         return energy;
+    }
+    
+    public static double calculatePointChargeHydrogens(double distance) {
+        distance = Math.sqrt(Math.pow())
     }
 //    
 //    public static double calculateDistance(double distance) {
