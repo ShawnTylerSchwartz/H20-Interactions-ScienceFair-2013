@@ -27,6 +27,7 @@ public class H2OInteractions {
     public static double xBoundary;
     public static double yBoundary;
     public static double totalDistance;
+    public static double singleUsableDistance;
     public static double energy;
     public static double totalEnergy;
     public static String arrayContentstoPrint;
@@ -35,12 +36,21 @@ public class H2OInteractions {
     public static double yOneArray;
     public static double yTwoArray;
     public static double moleculePositions[];
-    public static double x1;
-    public static double y1;
-    public static double x2;
-    public static double y2;
+    public static double leftHydrogenOnex1;
+    public static double leftHydrogenOney1;
+    public static double oxygenOnex1;
+    public static double oxygenOney1;
+    public static double rightHydrogenOnex1;
+    public static double rightHydrogenOney1;
+    public static double leftHydrogenTwox2;
+    public static double leftHydrogenTwoy2;
+    public static double oxygenTwox2;
+    public static double oxygenTwoy2;
+    public static double rightHydrogenTwox2;
+    public static double rightHydrogenTwoy2;
     public static double hydrogenCharge = Constants.KhydrogenPointCharge;
     public static double oxygenCharge = Constants.KoxygenPointCharge;
+    public static double distance;
     
     public static void main(String[] args) throws IOException {
 //        Random moleculeRandom = new Random();
@@ -84,7 +94,14 @@ public class H2OInteractions {
             System.out.println(y1);
             System.out.println(x2);
             System.out.println(y2);
-            System.out.println("\nPoint Charge Calculation: " + calculatePointCharge(1));
+            System.out.println("\nPoint Charge Calculation: " + calculatePointCharge(2));
+            
+            for(int i = 1; i < 10; i++) {
+                distance = Math.sqrt(Math.pow(x2-x1, 2)+Math.pow(y2-y1, 2));
+                energy = ((Constants.kConstant*hydrogenCharge*oxygenCharge)/Math.abs(distance));
+                System.out.println(i+ " Test: "+ energy);
+                
+            }
     }
    
     private static String readFile(String path) throws IOException {
@@ -120,15 +137,22 @@ public class H2OInteractions {
     public static double calculatePointCharge(double distance) {
         
         for(int i = 1; i < 10; i++) {
-            energy = ((Constants.kConstant*hydrogenCharge*oxygenCharge)/distance);
+            distance = Math.sqrt(Math.pow(x2-x1, 2)+Math.pow(y2-y1, 2));
+            energy = ((Constants.kConstant*hydrogenCharge*oxygenCharge)/Math.abs(distance));
+            System.out.println(energy + i);
         }
+//        energy += totalEnergy;
+//        return totalEnergy;
         return energy;
     }
-    
-    public static double calculateDistance() {
-        totalDistance = Math.sqrt((x2-x1)+(y2-y1));
-        return totalDistance;
-    }
+//    
+//    public static double calculateDistance(double distance) {
+//        for(int i = 1; i < 10; i++) {
+//            distance = Math.sqrt((x2-x1)+(y2-y1));
+//        }
+//        distance += totalDistance;
+//        return totalDistance;
+//    }
     
 //    public double calculateColumbForce(double momentOne, double momentTwo) {
 //        for(int i = 1; i < 10; i++) {
