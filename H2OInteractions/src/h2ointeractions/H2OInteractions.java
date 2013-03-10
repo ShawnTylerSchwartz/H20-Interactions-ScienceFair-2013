@@ -21,36 +21,37 @@ import java.util.Random;
  */
 //NOTE: Starting with 2 molecules first.
 public class H2OInteractions {
-
-    public static double xPos;
-    public static double yPos;
-    public static double xBoundary;
-    public static double yBoundary;
+    
+    //Array
+    public static double moleculePositions[];
+    public static String arrayContentstoPrint;
+    
+    //Variables for Calculations
+    public static double distance;
     public static double totalDistance;
     public static double singleUsableDistance;
     public static double energy;
     public static double totalEnergy;
-    public static String arrayContentstoPrint;
-    public static double xOneArray;
-    public static double xTwoArray;
-    public static double yOneArray;
-    public static double yTwoArray;
-    public static double moleculePositions[];
+        
+    //Water Molecule One (1) Positions
     public static double leftHydrogenOnex1;
     public static double leftHydrogenOney1;
     public static double oxygenOnex1;
     public static double oxygenOney1;
     public static double rightHydrogenOnex1;
     public static double rightHydrogenOney1;
+    
+    //Water Molecule Two (2) Positions
     public static double leftHydrogenTwox2;
     public static double leftHydrogenTwoy2;
     public static double oxygenTwox2;
     public static double oxygenTwoy2;
     public static double rightHydrogenTwox2;
     public static double rightHydrogenTwoy2;
+    
+    //Constants to (-->) Variables
     public static double hydrogenCharge = Constants.KhydrogenPointCharge;
     public static double oxygenCharge = Constants.KoxygenPointCharge;
-    public static double distance;
     
     public static void main(String[] args) throws IOException {
 //        Random moleculeRandom = new Random();
