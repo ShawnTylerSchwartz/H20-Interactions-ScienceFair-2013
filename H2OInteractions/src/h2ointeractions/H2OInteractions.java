@@ -15,7 +15,7 @@ import java.util.Random;
  * @author Shawn Tyler Schwartz
  * @class Period 5, Honors Chemistry 10B
  * @school High Tech Los Angeles
- * @assistants Wun Chiou & Daniel Perahya
+ * @advisors Wun Chiou & Daniel Perahya
  * @fileName "H2OInteractions.java" (Main Class)
  * @version 1.0 - 2013 LA County Science Fair Edition
  **/
@@ -143,6 +143,8 @@ public class H2OInteractions {
               rightHydrogenOney1 = rightHydrogenOneCoord[1];
               rightHydrogenTwox2 = rightHydrogenTwoCoord[0];
               rightHydrogenTwoy2 = rightHydrogenTwoCoord[1];
+              
+              System.out.println(calculatePointCharge(oxygenOnex1, oxygenTwox2, oxygenOnex1, oxygenTwox2, distance));
 //              
 //            for(int i = 1; i < 10; i++) {
 //                distance = Math.sqrt(Math.pow(x2-x1, 2)+Math.pow(y2-y1, 2));
