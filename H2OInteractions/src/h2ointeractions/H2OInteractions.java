@@ -20,6 +20,7 @@ import java.util.Random;
  * @version 1.0 - 2013 LA County Science Fair Edition
  */
 //NOTE: Starting with 2 molecules first.
+
 public class H2OInteractions {
     
     //Array
@@ -56,7 +57,6 @@ public class H2OInteractions {
     public static void main(String[] args) throws IOException {
 //        Random moleculeRandom = new Random();
 //        int testVar = moleculeRandom.nextInt(50) + 1;
-        
         try {
             // Create file 
             FileWriter fstream = new FileWriter("output.txt");
@@ -64,28 +64,24 @@ public class H2OInteractions {
             //out.write("Test output");
             //out.write("Test: "+ Arrays.toString(moleculePositions));
             moleculePositions = new double[4];
-            for (int n = 0; n < 4; n++) {
-//                for (int i = 0; i < 2; i++) {
-                    moleculePositions[n] = (double) (Math.random()*10);
-//                }
-            arrayContentstoPrint = Arrays.toString(moleculePositions);
+            for(int n = 0; n < 4; n++) {
+                moleculePositions[n] = (double) (Math.random()*10);
+                arrayContentstoPrint = Arrays.toString(moleculePositions);
+            //sopl(Arrays.toString(moleculePositions));             
+            }
             
-            //sopl(Arrays.toString(moleculePositions)); 
-            
-            
-        }
             sopl(arrayContentstoPrint);
             outputWriter.write("\n" + arrayContentstoPrint);
-
+            
             //Close the output inputStream
             outputWriter.close();
-        }
+        } 
         catch (Exception e){//Catch exception if any
             System.err.println("Error: " + e.getMessage());
         }
-        System.out.println(readFile("output.txt"));
         
-        for (int i = 0; i < 2; i++) {
+        System.out.println(readFile("output.txt"));
+        for(int i = 0; i < 2; i++) {
             x1 = moleculePositions[0];
             y1 = moleculePositions[1];
             x2 = moleculePositions[2];
@@ -113,9 +109,9 @@ public class H2OInteractions {
             //Instead of using default, pass in a decoder.
             return Charset.defaultCharset().decode(bb).toString();
         }
-            finally {
-                inputStream.close();
-            }
+        finally {
+            inputStream.close();
+        }
     }
     
     private static void showRandomGeneratedPosition(int aStart, int aEnd, Random aRandom) {
@@ -134,9 +130,8 @@ public class H2OInteractions {
         System.out.println(userInput);
     }
     
-    //Point charge calculation
+    //Point (partial) charge calculation
     public static double calculatePointCharge(double distance) {
-        
         for(int i = 1; i < 10; i++) {
             distance = Math.sqrt(Math.pow(x2-x1, 2)+Math.pow(y2-y1, 2));
             energy = ((Constants.kConstant*hydrogenCharge*oxygenCharge)/Math.abs(distance));
