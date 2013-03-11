@@ -41,7 +41,6 @@ public class H2OInteractions {
      */
     
     //Arrays
-//    public static double moleculePositions[];
     public static double leftHydrogenOneCoord[];
     public static double rightHydrogenOneCoord[];
     public static double oxygenOneCoord[];
@@ -73,6 +72,17 @@ public class H2OInteractions {
     public static double rightHydrogenTwox2;
     public static double rightHydrogenTwoy2;
     
+    //Iteration Energy Storing Variables
+    public static double firstIteration; //leftHydrogenOnex1y1 --> leftHydrogenTwox2y2
+    public static double secondIteration; //leftHydrogenOnex1y1 --> rightHydrogenTwox2y2
+    public static double thirdIteration; //rightHydrogenOnex1y1 --> leftHydrogenTwox2y2
+    public static double fourthIterartion; //rightHydrogenOnex1y1 --> rightHydrogenTwox2y2
+    public static double fifthIteration; //oxygenOnex1y1 --> oxygenTwox2y2
+    public static double sixthIteration; //leftHydrogenOnex1y1 --> oxygenOnex1y1
+    public static double seventhIteration; //rightHydrogenOnex1y1 --> oxygenTwox2y2
+    public static double eighthIteration; //leftHydrogenTwox2y2 --> oxygenOnex1y1
+    public static double ninthIteration; //rightHydrogenTwox2y2 --> oxygenOnex1y1
+    
     //Constants to (-->) Variables
     public static double hydrogenCharge = Constants.KhydrogenPointCharge;
     public static double oxygenCharge = Constants.KoxygenPointCharge;
@@ -83,9 +93,6 @@ public class H2OInteractions {
             // Create file 
             FileWriter fstream = new FileWriter("newoutput.txt");
             BufferedWriter outputWriter = new BufferedWriter(fstream);
-            //out.write("Test output");
-            //out.write("Test: "+ Arrays.toString(moleculePositions));
-            //moleculePositions = new double[4];
             leftHydrogenOneCoord = new double[2];
             rightHydrogenOneCoord = new double[2];
             oxygenOneCoord = new double[2];
@@ -111,7 +118,7 @@ public class H2OInteractions {
             outputWriter.write("rightHydrogenTwoCoord: " + Arrays.toString(rightHydrogenTwoCoord) + "\n");
             outputWriter.close();
         } 
-        catch (Exception e){//Catch exception if any
+        catch (Exception e){ //Catch exception if any
             System.err.println("Error: " + e.getMessage());
         }
         
@@ -145,6 +152,20 @@ public class H2OInteractions {
         System.out.println("distance: " + distance);
         System.out.println("This is my calculation: " + calculatePointCharge(leftHydrogenOnex1, leftHydrogenTwox2, leftHydrogenOney1, leftHydrogenTwoy2, distance));
         System.out.println(readFile("newoutput.txt"));
+        
+        firstIteration = calculatePointCharge(oxygenOnex1, oxygenTwox2, oxygenOnex1, oxygenTwox2, distance);
+        secondIteration = calculatePointCharge(oxygenOnex1, oxygenTwox2, oxygenOnex1, oxygenTwox2, distance);
+        thirdIteration = calculatePointCharge(oxygenOnex1, oxygenTwox2, oxygenOnex1, oxygenTwox2, distance);
+        fourthIterartion = calculatePointCharge(oxygenOnex1, oxygenTwox2, oxygenOnex1, oxygenTwox2, distance);
+        fifthIteration = calculatePointCharge(oxygenOnex1, oxygenTwox2, oxygenOnex1, oxygenTwox2, distance);
+        sixthIteration = calculatePointCharge(oxygenOnex1, oxygenTwox2, oxygenOnex1, oxygenTwox2, distance);
+        seventhIteration = calculatePointCharge(oxygenOnex1, oxygenTwox2, oxygenOnex1, oxygenTwox2, distance);
+        eighthIteration = calculatePointCharge(oxygenOnex1, oxygenTwox2, oxygenOnex1, oxygenTwox2, distance);
+        ninthIteration = calculatePointCharge(oxygenOnex1, oxygenTwox2, oxygenOnex1, oxygenTwox2, distance);
+        totalEnergy = firstIteration+secondIteration+thirdIteration+fourthIterartion+fifthIteration+sixthIteration
+                +seventhIteration+eighthIteration+ninthIteration;
+        
+        System.out.println("Sigma Point Charge Calculation: " + totalEnergy);
 
     }
    
@@ -166,10 +187,8 @@ public class H2OInteractions {
     }
     
     public static double calculatePointCharge(double moleculeOneX1, double moleculeTwoX2, double moleculeOneY1, double moleculeTwoY2, double distance) {
-        //        distance = Math.sqrt(Math.sqrt(Math.pow(moleculeTwoX2-moleculeOneX1, 2) + Math.pow(moleculeTwoY2-moleculeOneY1, 2)));
-//        energy = Constants.kConstant*hydrogenCharge*oxygenCharge/Math.abs(distance);
-//        System.out.println(energy);
-        energy = moleculeOneX1+moleculeOneY1+moleculeTwoX2+moleculeTwoY2;
+        distance = Math.sqrt(Math.sqrt(Math.pow(moleculeTwoX2-moleculeOneX1, 2) + Math.pow(moleculeTwoY2-moleculeOneY1, 2)));
+        energy = Constants.kConstant*hydrogenCharge*oxygenCharge/Math.abs(distance);
         return energy;
     }  
 }
