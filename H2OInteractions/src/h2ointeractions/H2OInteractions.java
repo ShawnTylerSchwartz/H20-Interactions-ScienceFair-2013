@@ -79,27 +79,6 @@ public class H2OInteractions {
     
     public static void main(String[] args) throws IOException {
             
-           
-            
-            
-            
-            
-        
-              System.out.println("leftHydrogenOnex1: " + leftHydrogenOnex1);
-              System.out.println("leftHydrogenOney1: " + leftHydrogenOney1);
-              System.out.println("leftHydrogenTwox2: " + leftHydrogenTwox2);
-              System.out.println("leftHydrogenTwoy2: " + leftHydrogenTwoy2);
-              System.out.println("oxygenOnex1: " + oxygenOnex1);
-              System.out.println("oxygenOney1: " + oxygenOney1);
-              System.out.println("oxygenTwox2: " + oxygenTwox2);
-              System.out.println("oxygenTwoy2: " + oxygenTwoy2);
-              System.out.println("rightHydrogenOnex1: " + rightHydrogenOnex1);
-              System.out.println("rightHydrogenOney1: " + rightHydrogenOney1);
-              System.out.println("rightHydrogenTwox2: " + rightHydrogenTwox2);
-              System.out.println("rightHydrogenTwoy2: " + rightHydrogenTwoy2);
-              
-              System.out.println("distance: " + distance);
-            
         try {
             // Create file 
             FileWriter fstream = new FileWriter("newoutput.txt");
@@ -107,7 +86,7 @@ public class H2OInteractions {
             //out.write("Test output");
             //out.write("Test: "+ Arrays.toString(moleculePositions));
             //moleculePositions = new double[4];
-                 leftHydrogenOneCoord = new double[2];
+            leftHydrogenOneCoord = new double[2];
             rightHydrogenOneCoord = new double[2];
             oxygenOneCoord = new double[2];
             oxygenTwoCoord = new double[2];
@@ -135,8 +114,9 @@ public class H2OInteractions {
         catch (Exception e){//Catch exception if any
             System.err.println("Error: " + e.getMessage());
         }
+        
         for(int i = 0; i < 2; i++) {
-        leftHydrogenOnex1 = leftHydrogenOneCoord[0];
+            leftHydrogenOnex1 = leftHydrogenOneCoord[0];
             leftHydrogenOney1 = leftHydrogenOneCoord[1];
             leftHydrogenTwox2 = leftHydrogenTwoCoord[0];
             leftHydrogenTwoy2 = leftHydrogenTwoCoord[1];
@@ -150,6 +130,19 @@ public class H2OInteractions {
             rightHydrogenTwoy2 = rightHydrogenTwoCoord[1];
         }
         
+        System.out.println("leftHydrogenOnex1: " + leftHydrogenOnex1);
+        System.out.println("leftHydrogenOney1: " + leftHydrogenOney1);
+        System.out.println("leftHydrogenTwox2: " + leftHydrogenTwox2);
+        System.out.println("leftHydrogenTwoy2: " + leftHydrogenTwoy2);
+        System.out.println("oxygenOnex1: " + oxygenOnex1);
+        System.out.println("oxygenOney1: " + oxygenOney1);
+        System.out.println("oxygenTwox2: " + oxygenTwox2);
+        System.out.println("oxygenTwoy2: " + oxygenTwoy2);
+        System.out.println("rightHydrogenOnex1: " + rightHydrogenOnex1);
+        System.out.println("rightHydrogenOney1: " + rightHydrogenOney1);
+        System.out.println("rightHydrogenTwox2: " + rightHydrogenTwox2);
+        System.out.println("rightHydrogenTwoy2: " + rightHydrogenTwoy2);
+        System.out.println("distance: " + distance);
         System.out.println("This is my calculation: " + calculatePointCharge(leftHydrogenOnex1, leftHydrogenTwox2, leftHydrogenOney1, leftHydrogenTwoy2, distance));
         System.out.println(readFile("newoutput.txt"));
 
@@ -167,7 +160,7 @@ public class H2OInteractions {
             inputStream.close();
         }
     }
-  
+    
     private static void sopl(String userInput){
         System.out.println(userInput);
     }
