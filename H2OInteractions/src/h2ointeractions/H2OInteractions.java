@@ -53,8 +53,10 @@ public class H2OInteractions {
     public static double distance;
     public static double totalDistance;
     public static double singleUsableDistance;
-    public static double energy;
-    public static double totalEnergy;
+    public static double pointChargeEnergy;
+    public static double totalPointChargeEnergy;
+    public static double dipoleMomentChargeEnergy;
+    public static double totalDipoleMomentChargeEnergy;
         
     //Water Molecule One (1) Positions
     public static double leftHydrogenOnex1;
@@ -162,10 +164,10 @@ public class H2OInteractions {
         seventhIteration = calculatePointCharge(oxygenOnex1, oxygenTwox2, oxygenOnex1, oxygenTwox2, distance);
         eighthIteration = calculatePointCharge(oxygenOnex1, oxygenTwox2, oxygenOnex1, oxygenTwox2, distance);
         ninthIteration = calculatePointCharge(oxygenOnex1, oxygenTwox2, oxygenOnex1, oxygenTwox2, distance);
-        totalEnergy = firstIteration+secondIteration+thirdIteration+fourthIterartion+fifthIteration+sixthIteration
+        totalPointChargeEnergy = firstIteration+secondIteration+thirdIteration+fourthIterartion+fifthIteration+sixthIteration
                 +seventhIteration+eighthIteration+ninthIteration;
         
-        System.out.println("Sigma Point Charge Calculation: " + totalEnergy);
+        System.out.println("Sigma Point Charge Calculation: " + totalPointChargeEnergy);
 
     }
    
@@ -188,7 +190,11 @@ public class H2OInteractions {
     
     public static double calculatePointCharge(double moleculeOneX1, double moleculeTwoX2, double moleculeOneY1, double moleculeTwoY2, double distance) {
         distance = Math.sqrt(Math.sqrt(Math.pow(moleculeTwoX2-moleculeOneX1, 2) + Math.pow(moleculeTwoY2-moleculeOneY1, 2)));
-        energy = Constants.kConstant*hydrogenCharge*oxygenCharge/Math.abs(distance);
-        return energy;
+        pointChargeEnergy = Constants.kConstant*hydrogenCharge*oxygenCharge/Math.abs(distance);
+        return pointChargeEnergy;
     }  
+    
+    public static double caclulateDipoleMoment(double momentOne, double momentTwo, double distance) {
+        return 0;
+    }
 }
