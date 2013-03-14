@@ -150,7 +150,7 @@ public class H2OInteractions {
     public static double oxygenCharge = Constants.KoxygenPointCharge;
     
     public static void main(String[] args) throws IOException {
-            
+            rotationAboutXMatrix(2);
         try {
             // Create file 
             FileWriter fstream = new FileWriter("newoutput.txt");
@@ -364,37 +364,41 @@ public class H2OInteractions {
         return 0;
     }
     
-    public static double rotationAboutXMatrix(double theta) {
-            //Rotation Matrix Function Initializations
-            rotateAboutXFunctionMatrix = new double[1][3][3];
-//            rotateAboutYFunctionMatrix = new double[1][3][3];
-//            rotateAboutYFunctionMatrix = new double[1][3][3];
-            
-            rotateAboutXFunctionMatrix[0][0][0] = 1;
-            rotateAboutXFunctionMatrix[0][0][1] = 0;
-            rotateAboutXFunctionMatrix[0][0][2] = 0;
-            rotateAboutXFunctionMatrix[0][1][0] = 0;
-            rotateAboutXFunctionMatrix[0][1][1] = Math.cos(theta);
-            rotateAboutXFunctionMatrix[0][1][2] = -Math.sin(theta);
-            rotateAboutXFunctionMatrix[0][2][0] = 0;
-            rotateAboutXFunctionMatrix[0][2][1] = Math.sin(theta);
-            rotateAboutXFunctionMatrix[0][2][2] = Math.cos(theta);
-            
-            //initialLeftHydrogenOnex1Pos = initialLeftHydrogenOneCoord[0];
-            //rotatedLeftHydrogenOnex1Pos = rotateAboutXFunctionMatrix[0][0][0];
-            rotationMatrixXCellZEROZEROZERO = rotateAboutXFunctionMatrix[0][0][0];
-            rotationMatrixXCellZEROZEROONE = rotateAboutXFunctionMatrix[0][0][1];
-            rotationMatrixXCellZEROZEROTWO = rotateAboutXFunctionMatrix[0][0][2];
-            rotationMatrixXCellZEROONEZERO = rotateAboutXFunctionMatrix[0][1][0];
-            rotationMatrixXCellZEROONEONE = rotateAboutXFunctionMatrix[0][1][1];
-            rotationMatrixXCellZEROONETWO = rotateAboutXFunctionMatrix[0][1][2];
-            rotationMatrixXCellZEROTWOZERO = rotateAboutXFunctionMatrix[0][2][0];
-            rotationMatrixXCellZEROTWOONE = rotateAboutXFunctionMatrix[0][2][1];
-            rotationMatrixXCellZEROTWOTWO = rotateAboutXFunctionMatrix[0][2][2];
-
-            
-            //initialLeftHydrogenOneCoord+rotateAboutXFunctionMatrix = finalLeftHydrogenOneCoordRotated;
-            
-            return 0;
+    public static void rotationAboutXMatrix(double theta) {
+            double cosTheta = Math.cos(theta);
+            double sinTheta = Math.sin(theta);
+            double array[][] = {{1,0,4},{0,cosTheta,-sinTheta},{0,sinTheta,cosTheta}};
+            double array1[][] = {{-24,0,93},{0,0,0},{96,0,0}}; //xyz
+            double array2[][] = new double[3][3];
+            int x = 3;
+            System.out.println("Matrix 1 : ");
+            for(int i = 0; i < x; i++) {
+                for(int j = 0; j < x; j++) {
+                    System.out.print(" "+ array[i][j]);
+                }
+            System.out.println();
+            }  
+            int y = 3;
+            System.out.println("Matrix 2 : ");
+            for(int i = 0; i < y; i++) {
+                for(int j = 0; j < y; j++) {
+                System.out.print(" "+array1[i][j]);
+            }  
+                System.out.println();
+            }
+            for(int i = 0; i < x; i++) {
+                for(int j = 0; j < y; j++) {
+                    for(int k = 0; k < y; k++){
+                        array2[i][j] += array[i][k]*array1[k][j];
+                    }
+                }  
+            }
+            System.out.println("Multiply of both matrix : ");
+                for(int i = 0; i < x; i++) {
+                    for(int j = 0; j < y; j++) {
+                        System.out.print(" "+array2[i][j]);
+                    }  
+                    System.out.println();
+                }
     }
 }

@@ -1,0 +1,8 @@
+The randomly generated molecules: 
+
+leftHydrogenOneCoord: [-24.0, 0.0, 93.0]
+rightHydrogenOneCoord: [96.0, 0.0, 0.0]
+oxygenOneCoord: [0.0, 0.0, 0.0]
+oxygenTwoCoord: [0.0, 0.0, 0.0]
+leftHydrogenTwoCoord: [0.0, 0.0, 0.0]
+rightHydrogenTwoCoord: [0.0, 0.0, 0.0]
