@@ -1,5 +1,6 @@
 package h2ointeractions;
 
+import com.sun.org.glassfish.external.amx.AMX;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -112,6 +113,13 @@ public class H2OInteractions {
     public static double initialRightHydrogenTwoy2Pos;
     public static double initialRightHydrogenTwoz2Pos;
     
+    public static Object finalLeftHydrogenOnePos;
+    public static Object finalLeftHydrogenTwoPos;
+    public static Object finalOxygenOnePos;
+    public static Object finalOxygenTwoPos;
+    public static Object finalRightHydrogenOnePos;
+    public static Object finalRightHydrogenTwoPos;
+    
     //Water Molecule One (1) Rotated Positions
     public static double rotatedLeftHydrogenOnex1Pos;
     public static double rotatedLeftHydrogenOney1Pos;
@@ -155,6 +163,13 @@ public class H2OInteractions {
     
     public static void main(String[] args) throws IOException {
             rotationAboutXYZMatrix(2);
+            finalLeftHydrogenOnePos = Arrays.toString(finalRotatedZArray[0]);
+            finalOxygenOnePos = Arrays.toString(finalRotatedZArray[1]);
+            finalRightHydrogenOnePos = Arrays.toString(finalRotatedZArray[2]);
+            System.out.println("Final leftHydrogen: x1y1z1 " + finalLeftHydrogenOnePos);
+            System.out.println("Final oxygen: x1y1z1" + finalOxygenOnePos);
+            System.out.println("Final rightHydrogen: x1y1z1 " + finalRightHydrogenOnePos);
+
         try {
             // Create file 
             FileWriter fstream = new FileWriter("newoutput.txt");
@@ -273,26 +288,27 @@ public class H2OInteractions {
 //            initialRightHydrogenTwoz2Pos = initialRightHydrogenTwoCoord[2];
 //        }
         
-          for(int i = 0; i < 3; i++) {
-            initialLeftHydrogenOnex1Pos = initialLeftHydrogenOneCoord[0];
-            initialLeftHydrogenOney1Pos = initialLeftHydrogenOneCoord[1];
-            initialLeftHydrogenOnez1Pos = initialLeftHydrogenOneCoord[2];
-            initialLeftHydrogenTwox2Pos = initialLeftHydrogenTwoCoord[0];
-            initialLeftHydrogenTwoy2Pos = initialLeftHydrogenTwoCoord[1];
-            initialLeftHydrogenTwoz2Pos = initialLeftHydrogenTwoCoord[2];
-            initialOxygenOnex1Pos = initialOxygenOneCoord[0];
-            initialOxygenOney1Pos = initialOxygenOneCoord[1];
-            initialOxygenOnez1Pos = initialOxygenOneCoord[2];
-            initialOxygenTwox2Pos = initialOxygenTwoCoord[0];
-            initialOxygenTwoy2Pos = initialOxygenTwoCoord[1];
-            initialOxygenTwoz2Pos = initialOxygenTwoCoord[2];
-            initialRightHydrogenOnex1Pos = initialRightHydrogenOneCoord[0];
-            initialRightHydrogenOney1Pos = initialRightHydrogenOneCoord[1];
-            initialRightHydrogenOnez1Pos = initialRightHydrogenOneCoord[2];
-            initialRightHydrogenTwox2Pos = initialRightHydrogenTwoCoord[0];
-            initialRightHydrogenTwoy2Pos = initialRightHydrogenTwoCoord[1];
-            initialRightHydrogenTwoz2Pos = initialRightHydrogenTwoCoord[2];
-        }
+//          for(int i = 0; i < 3; i++) {
+//            initialLeftHydrogenOnex1Pos = initialLeftHydrogenOneCoord[0];
+//            initialLeftHydrogenOney1Pos = initialLeftHydrogenOneCoord[1];
+//            initialLeftHydrogenOnez1Pos = initialLeftHydrogenOneCoord[2];
+//            initialLeftHydrogenTwox2Pos = initialLeftHydrogenTwoCoord[0];
+//            initialLeftHydrogenTwoy2Pos = initialLeftHydrogenTwoCoord[1];
+//            initialLeftHydrogenTwoz2Pos = initialLeftHydrogenTwoCoord[2];
+//            initialOxygenOnex1Pos = initialOxygenOneCoord[0];
+//            initialOxygenOney1Pos = initialOxygenOneCoord[1];
+//            initialOxygenOnez1Pos = initialOxygenOneCoord[2];
+//            initialOxygenTwox2Pos = initialOxygenTwoCoord[0];
+//            initialOxygenTwoy2Pos = initialOxygenTwoCoord[1];
+//            initialOxygenTwoz2Pos = initialOxygenTwoCoord[2];
+//            initialRightHydrogenOnex1Pos = initialRightHydrogenOneCoord[0];
+//            initialRightHydrogenOney1Pos = initialRightHydrogenOneCoord[1];
+//            initialRightHydrogenOnez1Pos = initialRightHydrogenOneCoord[2];
+//            initialRightHydrogenTwox2Pos = initialRightHydrogenTwoCoord[0];
+//            initialRightHydrogenTwoy2Pos = initialRightHydrogenTwoCoord[1];
+//            initialRightHydrogenTwoz2Pos = initialRightHydrogenTwoCoord[2];
+//        }
+          
         
         System.out.println("leftHydrogenOnex1: " + initialLeftHydrogenOnex1Pos);
         System.out.println("leftHydrogenOney1: " + initialLeftHydrogenOney1Pos);
@@ -313,7 +329,7 @@ public class H2OInteractions {
         System.out.println("rightHydrogenTwoy2: " + initialRightHydrogenTwoy2Pos);
         System.out.println("rightHydrogenTwoz2: " + initialRightHydrogenTwoz2Pos);
         System.out.println("distance: " + distance);
-        System.out.println("This is my calculation: " + calculatePointCharge(initialLeftHydrogenOnex1Pos, initialLeftHydrogenTwox2Pos, initialLeftHydrogenOney1Pos, initialLeftHydrogenTwoy2Pos, initialLeftHydrogenOnez1Pos, initialLeftHydrogenTwoz2Pos, distance));
+//        System.out.println("This is my calculation: " + calculatePointCharge(initialLeftHydrogenOnex1Pos, initialLeftHydrogenTwox2Pos, initialLeftHydrogenOney1Pos, initialLeftHydrogenTwoy2Pos, initialLeftHydrogenOnez1Pos, initialLeftHydrogenTwoz2Pos, distance));
         System.out.println(readFile("newoutput.txt"));
         
         firstIteration = calculatePointCharge(initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnez1Pos, initialOxygenTwoz2Pos, distance);
@@ -364,6 +380,7 @@ public class H2OInteractions {
         return 0;
     }
     
+    
     public static void rotationAboutXYZMatrix(double theta) {
             double cosTheta = Math.cos(theta);
             double sinTheta = Math.sin(theta);
@@ -373,9 +390,9 @@ public class H2OInteractions {
             double zRotationArrayConstants[][] = {{cosTheta,sinTheta,0},{-sinTheta,cosTheta,0},{0,0,1}}; //TOPtoBOTTOM
 //            double positionsArraybeforeYRot[][] = new double[3][3];
 //            double positionsArraybeforeZRot[][] = new double[3][3];
-            double finalRotatedXArray[][] = new double[3][3];
-            double finalRotatedYArray[][] = new double[3][3];
-            double finalRotatedZArray[][] = new double[3][3];
+            finalRotatedXArray = new double[3][3];
+            finalRotatedYArray = new double[3][3];
+            finalRotatedZArray = new double[3][3];
             //finalRotatedXArray = new double [3][3];
             //START X ROTATION MATRIX
             int x = 3;
@@ -468,6 +485,7 @@ public class H2OInteractions {
                     }  
                     System.out.println();
                 }
-            //END Z ROTATION MATRIX    
+            //END Z ROTATION MATRIX   
+
     }
 }
