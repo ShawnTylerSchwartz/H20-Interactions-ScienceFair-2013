@@ -149,8 +149,12 @@ public class H2OInteractions {
     public static double hydrogenCharge = Constants.KhydrogenPointCharge;
     public static double oxygenCharge = Constants.KoxygenPointCharge;
     
+    public static double finalRotatedXArray[][];
+    public static double finalRotatedYArray[][];
+    public static double finalRotatedZArray[][]; //TODO: Implement the matrix calculations to store into these variables.
+    
     public static void main(String[] args) throws IOException {
-            rotationAboutXMatrix(2);
+            rotationAboutXYZMatrix(2);
         try {
             // Create file 
             FileWriter fstream = new FileWriter("newoutput.txt");
@@ -234,10 +238,6 @@ public class H2OInteractions {
             initialRightHydrogenOneCoord[0] = 96;
             initialRightHydrogenOneCoord[1] = 0;
             initialRightHydrogenOneCoord[2] = 0;
-            
-            
-            
-            
             
             outputWriter.write("The randomly generated molecules: \n\n");
             outputWriter.write("leftHydrogenOneCoord: " + Arrays.toString(initialLeftHydrogenOneCoord) + "\n");
@@ -364,41 +364,110 @@ public class H2OInteractions {
         return 0;
     }
     
-    public static void rotationAboutXMatrix(double theta) {
+    public static void rotationAboutXYZMatrix(double theta) {
             double cosTheta = Math.cos(theta);
             double sinTheta = Math.sin(theta);
-            double array[][] = {{1,0,4},{0,cosTheta,-sinTheta},{0,sinTheta,cosTheta}};
-            double array1[][] = {{-24,0,93},{0,0,0},{96,0,0}}; //xyz
-            double array2[][] = new double[3][3];
+            double xRotationArrayConstants[][] = {{1,0,0},{0,cosTheta,-sinTheta},{0,sinTheta,cosTheta}}; //TOPtoBOTTOM
+            double initialPositionsArraybeforeXRot[][] = {{-24,0,93},{0,0,0},{96,0,0}}; //xyz
+            double yRotationArrayConstants[][] = {{cosTheta,0,-sinTheta}, {0,1,0}, {sinTheta,0,cosTheta}}; //TOPtoBOTTOM
+            double zRotationArrayConstants[][] = {{cosTheta,sinTheta,0},{-sinTheta,cosTheta,0},{0,0,1}}; //TOPtoBOTTOM
+//            double positionsArraybeforeYRot[][] = new double[3][3];
+//            double positionsArraybeforeZRot[][] = new double[3][3];
+            double finalRotatedXArray[][] = new double[3][3];
+            double finalRotatedYArray[][] = new double[3][3];
+            double finalRotatedZArray[][] = new double[3][3];
+            //finalRotatedXArray = new double [3][3];
+            //START X ROTATION MATRIX
             int x = 3;
-            System.out.println("Matrix 1 : ");
+            System.out.println("XMatrix 1 : ");
             for(int i = 0; i < x; i++) {
                 for(int j = 0; j < x; j++) {
-                    System.out.print(" "+ array[i][j]);
+                    System.out.print(" "+ xRotationArrayConstants[i][j]);
                 }
             System.out.println();
             }  
             int y = 3;
-            System.out.println("Matrix 2 : ");
+            System.out.println("XMatrix 2 : ");
             for(int i = 0; i < y; i++) {
                 for(int j = 0; j < y; j++) {
-                System.out.print(" "+array1[i][j]);
+                System.out.print(" "+initialPositionsArraybeforeXRot[i][j]);
             }  
                 System.out.println();
             }
             for(int i = 0; i < x; i++) {
                 for(int j = 0; j < y; j++) {
                     for(int k = 0; k < y; k++){
-                        array2[i][j] += array[i][k]*array1[k][j];
+                        finalRotatedXArray[i][j] += xRotationArrayConstants[i][k]*initialPositionsArraybeforeXRot[k][j];
                     }
                 }  
             }
-            System.out.println("Multiply of both matrix : ");
+            System.out.println("XMultiply of both matrix : ");
                 for(int i = 0; i < x; i++) {
                     for(int j = 0; j < y; j++) {
-                        System.out.print(" "+array2[i][j]);
+                        System.out.print(" "+finalRotatedXArray[i][j]);
                     }  
                     System.out.println();
                 }
+            //END X ROTATION MATRIX
+            //START Y ROTATION MATRIX
+            System.out.println("YMatrix 1 : ");
+            for(int i = 0; i < x; i++) {
+                for(int j = 0; j < x; j++) {
+                    System.out.print(" "+ yRotationArrayConstants[i][j]);
+                }
+            System.out.println();
+            }  
+            System.out.println("YMatrix 2 : ");
+            for(int i = 0; i < y; i++) {
+                for(int j = 0; j < y; j++) {
+                System.out.print(" "+finalRotatedXArray[i][j]);
+            }  
+                System.out.println();
+            }
+            for(int i = 0; i < x; i++) {
+                for(int j = 0; j < y; j++) {
+                    for(int k = 0; k < y; k++){
+                        finalRotatedYArray[i][j] += yRotationArrayConstants[i][k]*finalRotatedXArray[k][j];
+                    }
+                }  
+            }
+            System.out.println("YMultiply of both matrix : ");
+                for(int i = 0; i < x; i++) {
+                    for(int j = 0; j < x; j++) {
+                        System.out.print(" "+finalRotatedYArray[i][j]);
+                    }  
+                    System.out.println();
+                }
+            //END Y ROTATION MATRIX
+            //START Z ROTATION MATRIX
+            System.out.println("ZMatrix 1 : ");
+            for(int i = 0; i < x; i++) {
+                for(int j = 0; j < x; j++) {
+                    System.out.print(" "+ zRotationArrayConstants[i][j]);
+                }
+            System.out.println();
+            }  
+            System.out.println("ZMatrix 2 : ");
+            for(int i = 0; i < y; i++) {
+                for(int j = 0; j < y; j++) {
+                System.out.print(" "+finalRotatedYArray[i][j]);
+            }  
+                System.out.println();
+            }
+            for(int i = 0; i < x; i++) {
+                for(int j = 0; j < y; j++) {
+                    for(int k = 0; k < y; k++){
+                        finalRotatedZArray[i][j] += zRotationArrayConstants[i][k]*finalRotatedYArray[k][j];
+                    }
+                }  
+            }
+            System.out.println("ZMultiply of both matrix : ");
+                for(int i = 0; i < x; i++) {
+                    for(int j = 0; j < y; j++) {
+                        System.out.print(" "+finalRotatedZArray[i][j]);
+                    }  
+                    System.out.println();
+                }
+            //END Z ROTATION MATRIX    
     }
 }
