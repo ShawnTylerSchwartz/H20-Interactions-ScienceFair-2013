@@ -11,6 +11,7 @@ import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Random;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 /**
  * @author Shawn Tyler Schwartz
@@ -113,11 +114,11 @@ public class H2OInteractions {
     public static double initialRightHydrogenTwoy2Pos;
     public static double initialRightHydrogenTwoz2Pos;
     
-    public static Object finalLeftHydrogenOnePos;
+    public static double finalLeftHydrogenOnePos;
     public static Object finalLeftHydrogenTwoPos;
-    public static Object finalOxygenOnePos;
+    public static double finalOxygenOnePos;
     public static Object finalOxygenTwoPos;
-    public static Object finalRightHydrogenOnePos;
+    public static double finalRightHydrogenOnePos;
     public static Object finalRightHydrogenTwoPos;
     
     //Water Molecule One (1) Rotated Positions
@@ -161,14 +162,32 @@ public class H2OInteractions {
     public static double finalRotatedYArray[][];
     public static double finalRotatedZArray[][]; //TODO: Implement the matrix calculations to store into these variables.
     
+    public static double finalLeftHydrogenOneXPos;
+    public static double finalLeftHydrogenOneYPos;
+    public static double finalLeftHydrogenOneZPos;
+    public static double finalOxygenOneXPos;
+    public static double finalOxygenOneYPos;
+    public static double finalOxygenOneZPos;
+    public static double finalRightHydrogenOneXPos;
+    public static double finalRightHydrogenOneYPos;
+    public static double finalRighyHydrogenOneZPos;
+    
     public static void main(String[] args) throws IOException {
             rotationAboutXYZMatrix(2);
-            finalLeftHydrogenOnePos = Arrays.toString(finalRotatedZArray[0]);
-            finalOxygenOnePos = Arrays.toString(finalRotatedZArray[1]);
-            finalRightHydrogenOnePos = Arrays.toString(finalRotatedZArray[2]);
-            System.out.println("Final leftHydrogen: x1y1z1 " + finalLeftHydrogenOnePos);
-            System.out.println("Final oxygen: x1y1z1" + finalOxygenOnePos);
-            System.out.println("Final rightHydrogen: x1y1z1 " + finalRightHydrogenOnePos);
+            //finalLeftHydrogenOnePos = Arrays.toString(finalRotatedZArray[0]);
+            //finalOxygenOnePos = Arrays.toString(finalRotatedZArray[1]);
+            //finalRightHydrogenOnePos = Arrays.toString(finalRotatedZArray[2]);
+            finalLeftHydrogenOneXPos = finalRotatedZArray[0][0];
+            finalLeftHydrogenOneYPos = finalRotatedZArray[0][1];
+            finalLeftHydrogenOneZPos = finalRotatedZArray[0][2];
+            finalOxygenOneXPos = finalRotatedZArray[1][0];
+            finalOxygenOneYPos = finalRotatedZArray[1][1];
+            finalOxygenOneZPos = finalRotatedZArray[1][2];
+            finalRightHydrogenOneXPos = finalRotatedZArray[2][0];
+            finalRightHydrogenOneYPos = finalRotatedZArray[2][1];
+            finalRighyHydrogenOneZPos = finalRotatedZArray[2][2];
+            
+            //System.out.println("asdf:" +  finalLeftHydrogenOneXPos);
 
         try {
             // Create file 
@@ -346,6 +365,7 @@ public class H2OInteractions {
         
         System.out.println("Sigma Point Charge Calculation: " + totalPointChargeEnergy);
 
+        System.out.println("\n\n\n\n\najksdfhlkjasdfkjlhasldkhjf: " + finalLeftHydrogenOnePos);
     }
    
     private static String readFile(String path) throws IOException {
