@@ -158,9 +158,12 @@ public class H2OInteractions {
     public static double hydrogenCharge = Constants.KhydrogenPointCharge;
     public static double oxygenCharge = Constants.KoxygenPointCharge;
     
-    public static double finalRotatedXArray[][];
-    public static double finalRotatedYArray[][];
-    public static double finalRotatedZArray[][]; //TODO: Implement the matrix calculations to store into these variables.
+    public static double finalRotatedXArrayOne[][];
+    public static double finalRotatedYArrayOne[][];
+    public static double finalRotatedZArrayOne[][]; //TODO: Implement the matrix calculations to store into these variables.
+    public static double finalRotatedXArrayTwo[][];
+    public static double finalRotatedYArrayTwo[][];
+    public static double finalRotatedZArrayTwo[][];
     
     public static double finalLeftHydrogenOneXPos;
     public static double finalLeftHydrogenOneYPos;
@@ -172,22 +175,51 @@ public class H2OInteractions {
     public static double finalRightHydrogenOneYPos;
     public static double finalRighyHydrogenOneZPos;
     
+    public static double finalLeftHydrogenTwoXPos;
+    public static double finalLeftHydrogenTwoYPos;
+    public static double finalLeftHydrogenTwoZPos;
+    public static double finalOxygenTwoXPos;
+    public static double finalOxygenTwoYPos;
+    public static double finalOxygenTwoZPos;
+    public static double finalRightHydrogenTwoXPos;
+    public static double finalRightHydrogenTwoYPos;
+    public static double finalRightHydrogenTwoZPos;
+    
+    public static double randomNumber;
+      
+    
     public static void main(String[] args) throws IOException {
-            rotationAboutXYZMatrix(2);
-            //finalLeftHydrogenOnePos = Arrays.toString(finalRotatedZArray[0]);
-            //finalOxygenOnePos = Arrays.toString(finalRotatedZArray[1]);
-            //finalRightHydrogenOnePos = Arrays.toString(finalRotatedZArray[2]);
-            finalLeftHydrogenOneXPos = finalRotatedZArray[0][0];
-            finalLeftHydrogenOneYPos = finalRotatedZArray[0][1];
-            finalLeftHydrogenOneZPos = finalRotatedZArray[0][2];
-            finalOxygenOneXPos = finalRotatedZArray[1][0];
-            finalOxygenOneYPos = finalRotatedZArray[1][1];
-            finalOxygenOneZPos = finalRotatedZArray[1][2];
-            finalRightHydrogenOneXPos = finalRotatedZArray[2][0];
-            finalRightHydrogenOneYPos = finalRotatedZArray[2][1];
-            finalRighyHydrogenOneZPos = finalRotatedZArray[2][2];
             
-            //System.out.println("asdf:" +  finalLeftHydrogenOneXPos);
+            double rangeStart = 0;
+            //double rangeEnd = Math.toRadians(Math.PI);
+            //double rangeEnd = 12341234;
+            double rangeEnd = Math.toRadians(360);
+            Random random = new Random();
+            randomAngleGenerator(rangeStart, rangeEnd, random);
+
+            System.out.println("POO"+randomNumber);
+            rotationAboutXYZMatrix(randomNumber); //(theta)
+            
+            finalLeftHydrogenOneXPos = finalRotatedZArrayOne[0][0];
+            finalLeftHydrogenOneYPos = finalRotatedZArrayOne[0][1];
+            finalLeftHydrogenOneZPos = finalRotatedZArrayOne[0][2];
+            finalOxygenOneXPos = finalRotatedZArrayOne[1][0];
+            finalOxygenOneYPos = finalRotatedZArrayOne[1][1];
+            finalOxygenOneZPos = finalRotatedZArrayOne[1][2];
+            finalRightHydrogenOneXPos = finalRotatedZArrayOne[2][0];
+            finalRightHydrogenOneYPos = finalRotatedZArrayOne[2][1];
+            finalRighyHydrogenOneZPos = finalRotatedZArrayOne[2][2];
+            
+            finalLeftHydrogenTwoXPos = finalRotatedZArrayTwo[0][0];
+            finalLeftHydrogenTwoYPos = finalRotatedZArrayTwo[0][1];
+            finalLeftHydrogenTwoZPos = finalRotatedZArrayTwo[0][2];
+            finalOxygenTwoXPos = finalRotatedZArrayTwo[1][0];
+            finalOxygenTwoYPos = finalRotatedZArrayTwo[1][1];
+            finalOxygenTwoZPos = finalRotatedZArrayTwo[1][2];
+            finalRightHydrogenTwoXPos = finalRotatedZArrayTwo[2][0];
+            finalRightHydrogenTwoYPos = finalRotatedZArrayTwo[2][1];
+            finalRightHydrogenTwoZPos = finalRotatedZArrayTwo[2][2];
+            
 
         try {
             // Create file 
@@ -410,9 +442,13 @@ public class H2OInteractions {
             double zRotationArrayConstants[][] = {{cosTheta,sinTheta,0},{-sinTheta,cosTheta,0},{0,0,1}}; //TOPtoBOTTOM
 //            double positionsArraybeforeYRot[][] = new double[3][3];
 //            double positionsArraybeforeZRot[][] = new double[3][3];
-            finalRotatedXArray = new double[3][3];
-            finalRotatedYArray = new double[3][3];
-            finalRotatedZArray = new double[3][3];
+            finalRotatedXArrayOne = new double[3][3];
+            finalRotatedYArrayOne = new double[3][3];
+            finalRotatedZArrayOne = new double[3][3];
+            
+            finalRotatedXArrayTwo = new double[3][3];
+            finalRotatedYArrayTwo = new double[3][3];
+            finalRotatedZArrayTwo = new double[3][3];
             //finalRotatedXArray = new double [3][3];
             //START X ROTATION MATRIX
             int x = 3;
@@ -434,14 +470,14 @@ public class H2OInteractions {
             for(int i = 0; i < x; i++) {
                 for(int j = 0; j < y; j++) {
                     for(int k = 0; k < y; k++){
-                        finalRotatedXArray[i][j] += xRotationArrayConstants[i][k]*initialPositionsArraybeforeXRot[k][j];
+                        finalRotatedXArrayOne[i][j] += xRotationArrayConstants[i][k]*initialPositionsArraybeforeXRot[k][j];
                     }
                 }  
             }
             System.out.println("XMultiply of both matrix : ");
                 for(int i = 0; i < x; i++) {
                     for(int j = 0; j < y; j++) {
-                        System.out.print(" "+finalRotatedXArray[i][j]);
+                        System.out.print(" "+finalRotatedXArrayOne[i][j]);
                     }  
                     System.out.println();
                 }
@@ -457,21 +493,21 @@ public class H2OInteractions {
             System.out.println("YMatrix 2 : ");
             for(int i = 0; i < y; i++) {
                 for(int j = 0; j < y; j++) {
-                System.out.print(" "+finalRotatedXArray[i][j]);
+                System.out.print(" "+finalRotatedXArrayOne[i][j]);
             }  
                 System.out.println();
             }
             for(int i = 0; i < x; i++) {
                 for(int j = 0; j < y; j++) {
                     for(int k = 0; k < y; k++){
-                        finalRotatedYArray[i][j] += yRotationArrayConstants[i][k]*finalRotatedXArray[k][j];
+                        finalRotatedYArrayOne[i][j] += yRotationArrayConstants[i][k]*finalRotatedXArrayOne[k][j];
                     }
                 }  
             }
             System.out.println("YMultiply of both matrix : ");
                 for(int i = 0; i < x; i++) {
                     for(int j = 0; j < x; j++) {
-                        System.out.print(" "+finalRotatedYArray[i][j]);
+                        System.out.print(" "+finalRotatedYArrayOne[i][j]);
                     }  
                     System.out.println();
                 }
@@ -487,25 +523,36 @@ public class H2OInteractions {
             System.out.println("ZMatrix 2 : ");
             for(int i = 0; i < y; i++) {
                 for(int j = 0; j < y; j++) {
-                System.out.print(" "+finalRotatedYArray[i][j]);
+                System.out.print(" "+finalRotatedYArrayOne[i][j]);
             }  
                 System.out.println();
             }
             for(int i = 0; i < x; i++) {
                 for(int j = 0; j < y; j++) {
                     for(int k = 0; k < y; k++){
-                        finalRotatedZArray[i][j] += zRotationArrayConstants[i][k]*finalRotatedYArray[k][j];
+                        finalRotatedZArrayOne[i][j] += zRotationArrayConstants[i][k]*finalRotatedYArrayOne[k][j];
                     }
                 }  
             }
             System.out.println("ZMultiply of both matrix : ");
                 for(int i = 0; i < x; i++) {
                     for(int j = 0; j < y; j++) {
-                        System.out.print(" "+finalRotatedZArray[i][j]);
+                        System.out.print(" "+finalRotatedZArrayOne[i][j]);
                     }  
                     System.out.println();
                 }
-            //END Z ROTATION MATRIX   
-
+            //END Z ROTATION MATRIX
+    }
+    
+     private static void randomAngleGenerator(double aStart, double aEnd, Random aRandom) {
+        if(aStart > aEnd) {
+            throw new IllegalArgumentException("Start cannot exceed End.");
+        }
+        //get the range, casting to long to avoid overflow problems
+        long range = (long)aEnd - (long)aStart + 1;
+        // compute a fraction of the range, 0 <= frac < range
+        long fraction = (long)(range * aRandom.nextDouble());
+        randomNumber =  (double)(fraction + aStart);    
+        sopl("Generated : " + randomNumber);
     }
 }
