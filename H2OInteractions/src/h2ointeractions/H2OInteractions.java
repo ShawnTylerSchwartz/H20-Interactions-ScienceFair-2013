@@ -286,15 +286,9 @@ public class H2OInteractions {
         return pointChargeEnergy;
     }
     
-    public static double rotateMatrixX(double molecule, double theta) {
-        
-        return 0;
-    }
-    
     public static double caclulateDipoleMoment(double momentOne, double momentTwo, double distance) {
         return 0;
     }
-    
     
     public static void rotationAboutXYZMatrix(double theta) {
             double cosTheta = Math.cos(theta);
