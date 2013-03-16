@@ -51,38 +51,6 @@ public class H2OInteractions {
     public static double initialRightHydrogenTwoCoord[];
     public static String arrayContentstoPrint;
     
-    //3D Matrix - Final Coordinates After Rotation
-    public static double finalLeftHydrogenOneCoordRotated[];
-    public static double finalRightHydrogenOneCoordRotated[];
-    public static double finalOxygenOneCoordRotated[];
-    public static double finalOxygenTwoCoordRotated[];
-    public static double finalLeftHydrogenTwoCoordRotated[];
-    public static double finalRightHydrogenTwoCoordRotated[];
-    
-    //3D Matrix - Fianl Coordinates After Translation
-    public static double finalLeftHydrogenOneCoordTranslated[];
-    public static double finalRightHydrogenOneCoordTranslated[];
-    public static double finalOxygenOneCoordTranslated[];
-    public static double finalOxygenTwoCoordTranslated[];
-    public static double finalLeftHydrogenTwoCoordTranslated[];
-    public static double finalRightHydrogenTwoCoordTranslated[];
-    
-    //Rotation Matrix Constants
-    public static double rotateAboutXFunctionMatrix[][][];
-    public static double rotateAboutYFunctionMatrix[][][];
-    public static double rotateAboutZFunctionMatrix[][][];
-    
-    //Rotation (About X-Axis) Matrix Cell Value Variables
-    public static double rotationMatrixXCellZEROZEROZERO;
-    public static double rotationMatrixXCellZEROZEROONE;
-    public static double rotationMatrixXCellZEROZEROTWO;
-    public static double rotationMatrixXCellZEROONEZERO;
-    public static double rotationMatrixXCellZEROONEONE;
-    public static double rotationMatrixXCellZEROONETWO;
-    public static double rotationMatrixXCellZEROTWOZERO;
-    public static double rotationMatrixXCellZEROTWOONE;
-    public static double rotationMatrixXCellZEROTWOTWO;
-    
     //Variables for Calculations
     public static double distance;
     public static double totalDistance;
@@ -113,35 +81,6 @@ public class H2OInteractions {
     public static double initialRightHydrogenTwox2Pos;
     public static double initialRightHydrogenTwoy2Pos;
     public static double initialRightHydrogenTwoz2Pos;
-    
-    public static double finalLeftHydrogenOnePos;
-    public static Object finalLeftHydrogenTwoPos;
-    public static double finalOxygenOnePos;
-    public static Object finalOxygenTwoPos;
-    public static double finalRightHydrogenOnePos;
-    public static Object finalRightHydrogenTwoPos;
-    
-    //Water Molecule One (1) Rotated Positions
-    public static double rotatedLeftHydrogenOnex1Pos;
-    public static double rotatedLeftHydrogenOney1Pos;
-    public static double rotatedLeftHydrogenOnez1Pos;
-    public static double rotatedOxygenOnex1Pos;
-    public static double rotatedOxygenOney1Pos;
-    public static double rotatedOxygenOnez1Pos;
-    public static double rotatedRightHydrogenOnex1Pos;
-    public static double rotatedRightHydrogenOney1Pos;
-    public static double rotatedRightHydrogenOnez1Pos;
-    
-    //Water Molecule Two (2) Rotated Positions
-    public static double rotatedLeftHydrogenTwox2Pos;
-    public static double rotatedLeftHydrogenTwoy2Pos;
-    public static double rotatedLeftHydrogenTwoz2Pos;
-    public static double rotatedOxygenTwox2Pos;
-    public static double rotatedOxygenTwoy2Pos;
-    public static double rotatedOxygenTwoz2Pos;
-    public static double rotatedRightHydrogenTwox2Pos;
-    public static double rotatedRightHydrogenTwoy2Pos;
-    public static double rotatedRightHydrogenTwoz2Pos;
     
     //Iteration Energy Storing Variables
     public static double firstIteration; //leftHydrogenOnex1y1 --> leftHydrogenTwox2y2
@@ -240,58 +179,7 @@ public class H2OInteractions {
 //                initialLeftHydrogenTwoCoord[i] = (double) (Math.random()*4);
 //                initialRightHydrogenTwoCoord[i] = (double) (Math.random()*4);
 //            }
-                        
-//            double[][] rotateAboutXFunction = new double[][] {
-//                { 1, 3, 3 }, // First List
-//                { 1, 3, 3 }  // Second List
-//            };
-            
-            /*
-             * double[][][] numbers = new double[][][]	{
-	    {
-		{  12.44, 525.38,  -6.28,  2448.32, 632.04 },
-		{-378.05,  48.14, 634.18,   762.48,  83.02 },
-		{  64.92,  -7.44,  86.74,  -534.60, 386.73 }
-	    },
-	    {
-		{  48.02, 120.44,   38.62,  526.82, 1704.62 },
-		{  56.85, 105.48,  363.31,  172.62,  128.48 },
-		{  906.68, 47.12, -166.07, 4444.26,  408.62 }
-	    }
-	};
-        * 
-        * numbers[0][0][0] = 12.44;
-	numbers[0][1][1] = 525.38;
-	numbers[0][2][2] = -6.28;
-	numbers[0][0][3] = 2448.32;
-	numbers[0][1][4] = 632.04;
-	numbers[0][2][0] = -378.05;
-	numbers[0][0][1] = 48.14;
-	numbers[0][1][2] = 634.18;
-	numbers[0][2][3] = 762.48;
-	numbers[0][0][4] = 83.02;
-	numbers[0][1][0] = 64.92;
-	numbers[0][2][1] = -7.44;
-	numbers[0][0][2] = 86.74;
-	numbers[0][1][3] = -534.60;
-	numbers[0][2][4] = 386.73;
-	numbers[1][0][0] = 48.02;
-	numbers[1][1][1] = 120.44;
-	numbers[1][2][2] = 38.62;
-	numbers[1][0][3] = 526.82;
-	numbers[1][1][4] = 1704.62;
-	numbers[1][2][0] = 56.85;
-	numbers[1][0][1] = 105.48;
-	numbers[1][1][2] = 363.31;
-	numbers[1][2][3] = 172.62;
-	numbers[1][0][4] = 128.48;
-	numbers[1][1][0] = 906.68;
-	numbers[1][2][1] = 47.12;
-	numbers[1][0][2] = -166.07;
-	numbers[1][1][3] = 4444.26;
-	numbers[1][2][4] = 408.62;
-             */
-                        
+
             //Initial Position of First Water Molecule in System
             initialLeftHydrogenOneCoord[0] = -24;
             initialLeftHydrogenOneCoord[1] = 0;
@@ -338,29 +226,6 @@ public class H2OInteractions {
 //            initialRightHydrogenTwoy2Pos = initialRightHydrogenTwoCoord[1];
 //            initialRightHydrogenTwoz2Pos = initialRightHydrogenTwoCoord[2];
 //        }
-        
-//          for(int i = 0; i < 3; i++) {
-//            initialLeftHydrogenOnex1Pos = initialLeftHydrogenOneCoord[0];
-//            initialLeftHydrogenOney1Pos = initialLeftHydrogenOneCoord[1];
-//            initialLeftHydrogenOnez1Pos = initialLeftHydrogenOneCoord[2];
-//            initialLeftHydrogenTwox2Pos = initialLeftHydrogenTwoCoord[0];
-//            initialLeftHydrogenTwoy2Pos = initialLeftHydrogenTwoCoord[1];
-//            initialLeftHydrogenTwoz2Pos = initialLeftHydrogenTwoCoord[2];
-//            initialOxygenOnex1Pos = initialOxygenOneCoord[0];
-//            initialOxygenOney1Pos = initialOxygenOneCoord[1];
-//            initialOxygenOnez1Pos = initialOxygenOneCoord[2];
-//            initialOxygenTwox2Pos = initialOxygenTwoCoord[0];
-//            initialOxygenTwoy2Pos = initialOxygenTwoCoord[1];
-//            initialOxygenTwoz2Pos = initialOxygenTwoCoord[2];
-//            initialRightHydrogenOnex1Pos = initialRightHydrogenOneCoord[0];
-//            initialRightHydrogenOney1Pos = initialRightHydrogenOneCoord[1];
-//            initialRightHydrogenOnez1Pos = initialRightHydrogenOneCoord[2];
-//            initialRightHydrogenTwox2Pos = initialRightHydrogenTwoCoord[0];
-//            initialRightHydrogenTwoy2Pos = initialRightHydrogenTwoCoord[1];
-//            initialRightHydrogenTwoz2Pos = initialRightHydrogenTwoCoord[2];
-//        }
-          
-        
         System.out.println("leftHydrogenOnex1: " + initialLeftHydrogenOnex1Pos);
         System.out.println("leftHydrogenOney1: " + initialLeftHydrogenOney1Pos);
         System.out.println("leftHydrogenOnez1: " + initialLeftHydrogenOnez1Pos);
@@ -396,8 +261,6 @@ public class H2OInteractions {
                 +seventhIteration+eighthIteration+ninthIteration;
         
         System.out.println("Sigma Point Charge Calculation: " + totalPointChargeEnergy);
-
-        System.out.println("\n\n\n\n\najksdfhlkjasdfkjlhasldkhjf: " + finalLeftHydrogenOnePos);
     }
    
     private static String readFile(String path) throws IOException {
@@ -440,8 +303,6 @@ public class H2OInteractions {
             double initialPositionsArraybeforeXRot[][] = {{-24,0,93},{0,0,0},{96,0,0}}; //xyz
             double yRotationArrayConstants[][] = {{cosTheta,0,-sinTheta}, {0,1,0}, {sinTheta,0,cosTheta}}; //TOPtoBOTTOM
             double zRotationArrayConstants[][] = {{cosTheta,sinTheta,0},{-sinTheta,cosTheta,0},{0,0,1}}; //TOPtoBOTTOM
-//            double positionsArraybeforeYRot[][] = new double[3][3];
-//            double positionsArraybeforeZRot[][] = new double[3][3];
             finalRotatedXArrayOne = new double[3][3];
             finalRotatedYArrayOne = new double[3][3];
             finalRotatedZArrayOne = new double[3][3];
