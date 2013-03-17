@@ -1,6 +1,5 @@
 package h2ointeractions;
 
-import com.sun.org.glassfish.external.amx.AMX;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,8 +10,6 @@ import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Random;
-import java.util.Scanner;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 /**
  * @author Shawn Tyler Schwartz
@@ -22,7 +19,6 @@ import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
  * @fileName "H2OInteractions.java" (Main Class)
  * @version 1.0 - 2013 LA County Science Fair Edition
  **/
-//NOTE: Starting with 2 molecules first.
 
 public class H2OInteractions {
     
@@ -43,43 +39,19 @@ public class H2OInteractions {
      *  9. rightHydrogenTwox2y2 --> oxygenOnex1y1
      */
         
-    //Arrays
+    //Coordinate Arrays
     public static double initialLeftHydrogenOneCoord[];
     public static double initialRightHydrogenOneCoord[];
     public static double initialOxygenOneCoord[];
     public static double initialOxygenTwoCoord[];
     public static double initialLeftHydrogenTwoCoord[];
     public static double initialRightHydrogenTwoCoord[];
-    public static String arrayContentstoPrint;
+    public static double finalTranslatedArrayOne[][];
+    public static double finalTranslatedArrayTwo[][];
     
     //Variables for Calculations
-    public static double singleUsableDistance;
     public static double pointChargeEnergy;
     public static double totalPointChargeEnergy;
-    public static double dipoleMomentChargeEnergy;
-    public static double totalDipoleMomentChargeEnergy;
-        
-    //Water Molecule One (1) Initial Positions
-    public static double initialLeftHydrogenOnex1Pos;
-    public static double initialLeftHydrogenOney1Pos;
-    public static double initialLeftHydrogenOnez1Pos;
-    public static double initialOxygenOnex1Pos;
-    public static double initialOxygenOney1Pos;
-    public static double initialOxygenOnez1Pos;
-    public static double initialRightHydrogenOnex1Pos;
-    public static double initialRightHydrogenOney1Pos;
-    public static double initialRightHydrogenOnez1Pos;
-    
-    //Water Molecule Two (2) Initial Positions
-    public static double initialLeftHydrogenTwox2Pos;
-    public static double initialLeftHydrogenTwoy2Pos;
-    public static double initialLeftHydrogenTwoz2Pos;
-    public static double initialOxygenTwox2Pos;
-    public static double initialOxygenTwoy2Pos;
-    public static double initialOxygenTwoz2Pos;
-    public static double initialRightHydrogenTwox2Pos;
-    public static double initialRightHydrogenTwoy2Pos;
-    public static double initialRightHydrogenTwoz2Pos;
     
     //Iteration Energy Storing Variables
     public static double firstCalcIteration; //leftHydrogenOnex1y1 --> leftHydrogenTwox2y2
@@ -92,60 +64,63 @@ public class H2OInteractions {
     public static double eighthCalcIteration; //leftHydrogenTwox2y2 --> oxygenOnex1y1
     public static double ninthCalcIteration; //rightHydrogenTwox2y2 --> oxygenOnex1y1
     
+    //Rotated Molecule Coordinate Arrays
     public static double finalRotatedXArrayOne[][];
     public static double finalRotatedYArrayOne[][];
-    public static double finalRotatedZArrayOne[][]; //TODO: Implement the matrix calculations to store into these variables.
+    public static double finalRotatedZArrayOne[][];
     public static double finalRotatedXArrayTwo[][];
     public static double finalRotatedYArrayTwo[][];
     public static double finalRotatedZArrayTwo[][];
     
-    public static double finalTranslatedArrayOne[][];
-    public static double finalTranslatedArrayTwo[][];
+    //Rotated Molecule Variables to Store Coordinate Array Values
+        //Molecule One
+        public static double finalRotLeftHydrogenOneXPos;
+        public static double finalRotLeftHydrogenOneYPos;
+        public static double finalRotLeftHydrogenOneZPos;
+        public static double finalRotOxygenOneXPos;
+        public static double finalRotOxygenOneYPos;
+        public static double finalRotOxygenOneZPos;
+        public static double finalRotRightHydrogenOneXPos;
+        public static double finalRotRightHydrogenOneYPos;
+        public static double finalRotRighyHydrogenOneZPos;
+        
+        //Molecule Two
+        public static double finalRotLeftHydrogenTwoXPos;
+        public static double finalRotLeftHydrogenTwoYPos;
+        public static double finalRotLeftHydrogenTwoZPos;
+        public static double finalRotOxygenTwoXPos;
+        public static double finalRotOxygenTwoYPos;
+        public static double finalRotOxygenTwoZPos;
+        public static double finalRotRightHydrogenTwoXPos;
+        public static double finalRotRightHydrogenTwoYPos;
+        public static double finalRotRightHydrogenTwoZPos;
     
-    public static double finalRotLeftHydrogenOneXPos;
-    public static double finalRotLeftHydrogenOneYPos;
-    public static double finalRotLeftHydrogenOneZPos;
-    public static double finalRotOxygenOneXPos;
-    public static double finalRotOxygenOneYPos;
-    public static double finalRotOxygenOneZPos;
-    public static double finalRotRightHydrogenOneXPos;
-    public static double finalRotRightHydrogenOneYPos;
-    public static double finalRotRighyHydrogenOneZPos;
+    //Translated Molecule Variables to Store Coordinate Array Values
+        //Molecule One
+        public static double finalTransLeftHydrogenOneXPos;
+        public static double finalTransLeftHydrogenOneYPos;
+        public static double finalTransLeftHydrogenOneZPos;
+        public static double finalTransOxygenOneXPos;
+        public static double finalTransOxygenOneYPos;
+        public static double finalTransOxygenOneZPos;
+        public static double finalTransRightHydrogenOneXPos;
+        public static double finalTransRightHydrogenOneYPos;
+        public static double finalTransRightHydrogenOneZPos;
+        
+        //Molecule Two
+        public static double finalTransLeftHydrogenTwoXPos;
+        public static double finalTransLeftHydrogenTwoYPos;
+        public static double finalTransLeftHydrogenTwoZPos;
+        public static double finalTransOxygenTwoXPos;
+        public static double finalTransOxygenTwoYPos;
+        public static double finalTransOxygenTwoZPos;
+        public static double finalTransRightHydrogenTwoXPos;
+        public static double finalTransRightHydrogenTwoYPos;
+        public static double finalTransRightHydrogenTwoZPos;
     
-    public static double finalRotLeftHydrogenTwoXPos;
-    public static double finalRotLeftHydrogenTwoYPos;
-    public static double finalRotLeftHydrogenTwoZPos;
-    public static double finalRotOxygenTwoXPos;
-    public static double finalRotOxygenTwoYPos;
-    public static double finalRotOxygenTwoZPos;
-    public static double finalRotRightHydrogenTwoXPos;
-    public static double finalRotRightHydrogenTwoYPos;
-    public static double finalRotRightHydrogenTwoZPos;
-    
-    
-    public static double finalTransLeftHydrogenOneXPos;
-    public static double finalTransLeftHydrogenOneYPos;
-    public static double finalTransLeftHydrogenOneZPos;
-    public static double finalTransOxygenOneXPos;
-    public static double finalTransOxygenOneYPos;
-    public static double finalTransOxygenOneZPos;
-    public static double finalTransRightHydrogenOneXPos;
-    public static double finalTransRightHydrogenOneYPos;
-    public static double finalTransRightHydrogenOneZPos;
-    
-    public static double finalTransLeftHydrogenTwoXPos;
-    public static double finalTransLeftHydrogenTwoYPos;
-    public static double finalTransLeftHydrogenTwoZPos;
-    public static double finalTransOxygenTwoXPos;
-    public static double finalTransOxygenTwoYPos;
-    public static double finalTransOxygenTwoZPos;
-    public static double finalTransRightHydrogenTwoXPos;
-    public static double finalTransRightHydrogenTwoYPos;
-    public static double finalTransRightHydrogenTwoZPos;
-    
+    //Randomly Generated Numbers
     public static double randomTheta;
     public static double randomTranslationConstant;
-      
     
     public static void main(String[] args) throws IOException {
             
@@ -205,7 +180,6 @@ public class H2OInteractions {
             finalTransRightHydrogenTwoYPos = finalTranslatedArrayTwo[2][1];
             finalTransRightHydrogenTwoZPos = finalTranslatedArrayTwo[2][2];
             
-
         try {
             // Create file 
             FileWriter fstream = new FileWriter("newoutput.txt");
@@ -292,7 +266,7 @@ public class H2OInteractions {
         double sinTheta = Math.sin(theta);
         double xRotationArrayConstants[][] = {{1,0,0},{0,cosTheta,-sinTheta},{0,sinTheta,cosTheta}}; //TOPtoBOTTOM
         double initialPositionsArraybeforeXRot[][] = {{-24,0,93},{0,0,0},{96,0,0}}; //xyz
-        double yRotationArrayConstants[][] = {{cosTheta,0,-sinTheta}, {0,1,0}, {sinTheta,0,cosTheta}}; //TOPtoBOTTOM
+        double yRotationArrayConstants[][] = {{cosTheta,0,-sinTheta},{0,1,0},{sinTheta,0,cosTheta}}; //TOPtoBOTTOM
         double zRotationArrayConstants[][] = {{cosTheta,sinTheta,0},{-sinTheta,cosTheta,0},{0,0,1}}; //TOPtoBOTTOM
         finalRotatedXArrayOne = new double[3][3];
         finalRotatedYArrayOne = new double[3][3];
