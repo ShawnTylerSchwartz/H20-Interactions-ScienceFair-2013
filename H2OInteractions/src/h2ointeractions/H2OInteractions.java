@@ -162,7 +162,8 @@ public class H2OInteractions {
             randomTranslationConstantGenerator(rangeStartRandomTranslationConstant, rangeEndRandomTranslationConstant,randomGenTranslationConstant);
             System.out.println("Random Translation Constant: " +randomTranslationConstant);
             
-            randomTranslateXYZ();
+            randomTranslateMolOneXYZ();
+            randomTranslateMolTwoXYZ();
             
             finalRotLeftHydrogenOneXPos = finalRotatedZArrayOne[0][0];
             finalRotLeftHydrogenOneYPos = finalRotatedZArrayOne[0][1];
@@ -242,25 +243,6 @@ public class H2OInteractions {
             System.err.println("Error: " + e.getMessage());
         }
         
-        System.out.println("leftHydrogenOnex1: " + initialLeftHydrogenOnex1Pos);
-        System.out.println("leftHydrogenOney1: " + initialLeftHydrogenOney1Pos);
-        System.out.println("leftHydrogenOnez1: " + initialLeftHydrogenOnez1Pos);
-        System.out.println("leftHydrogenTwox2: " + initialLeftHydrogenTwox2Pos);
-        System.out.println("leftHydrogenTwoy2: " + initialLeftHydrogenTwoy2Pos);
-        System.out.println("leftHydrogenTwoz2: " + initialLeftHydrogenTwoz2Pos);
-        System.out.println("oxygenOnex1: " + initialOxygenOnex1Pos);
-        System.out.println("oxygenOney1: " + initialOxygenOney1Pos);
-        System.out.println("oxygenOnez1: " + initialOxygenOnez1Pos);
-        System.out.println("oxygenTwox2: " + initialOxygenTwox2Pos);
-        System.out.println("oxygenTwoy2: " + initialOxygenTwoy2Pos);
-        System.out.println("oxygenTwoz2: " + initialOxygenTwoz2Pos);
-        System.out.println("rightHydrogenOnex1: " + initialRightHydrogenOnex1Pos);
-        System.out.println("rightHydrogenOney1: " + initialRightHydrogenOney1Pos);
-        System.out.println("rightHydrogenOnez1: " + initialRightHydrogenOnez1Pos);
-        System.out.println("rightHydrogenTwox2: " + initialRightHydrogenTwox2Pos);
-        System.out.println("rightHydrogenTwoy2: " + initialRightHydrogenTwoy2Pos);
-        System.out.println("rightHydrogenTwoz2: " + initialRightHydrogenTwoz2Pos);
-        System.out.println("distance: " + distance);
         System.out.println(readFile("newoutput.txt"));
         
         firstCalcIteration = calculatePointCharge(finalTransLeftHydrogenOneXPos, finalTransLeftHydrogenOneXPos, finalTransLeftHydrogenOneYPos, finalTransLeftHydrogenTwoXPos, finalTransLeftHydrogenOneZPos, finalTransLeftHydrogenTwoZPos);
@@ -320,7 +302,7 @@ public class H2OInteractions {
         finalRotatedYArrayTwo = new double[3][3];
         finalRotatedZArrayTwo = new double[3][3];
         //finalRotatedXArray = new double [3][3];
-        //START X ROTATION MATRIX
+        //START X ROTATION MATRIX Molecule One
         int x = 3;
         System.out.println("XMatrix 1 : ");
         for(int i = 0; i < x; i++) {
@@ -351,8 +333,8 @@ public class H2OInteractions {
                 }  
                 System.out.println();
             }
-        //END X ROTATION MATRIX
-        //START Y ROTATION MATRIX
+        //END X ROTATION MATRIX Molecule One
+        //START Y ROTATION MATRIX Molecule One
         System.out.println("YMatrix 1 : ");
         for(int i = 0; i < x; i++) {
             for(int j = 0; j < x; j++) {
@@ -381,8 +363,8 @@ public class H2OInteractions {
                 }  
                 System.out.println();
             }
-        //END Y ROTATION MATRIX
-        //START Z ROTATION MATRIX
+        //END Y ROTATION MATRIX Molecule One
+        //START Z ROTATION MATRIX Molecule One
         System.out.println("ZMatrix 1 : ");
         for(int i = 0; i < x; i++) {
             for(int j = 0; j < x; j++) {
@@ -411,40 +393,159 @@ public class H2OInteractions {
                 }  
                 System.out.println();
             }
-        //END Z ROTATION MATRIX
+        //END Z ROTATION MATRIX Molecule One
+            
+        //START X ROTATION MATRIX Molecule Two
+        System.out.println("XMatrix 1 : ");
+        for(int i = 0; i < x; i++) {
+            for(int j = 0; j < x; j++) {
+                System.out.print(" "+ xRotationArrayConstants[i][j]);
+            }
+        System.out.println();
+        }  
+        System.out.println("XMatrix 2 : ");
+        for(int i = 0; i < y; i++) {
+            for(int j = 0; j < y; j++) {
+            System.out.print(" "+initialPositionsArraybeforeXRot[i][j]);
+        }  
+            System.out.println();
+        }
+        for(int i = 0; i < x; i++) {
+            for(int j = 0; j < y; j++) {
+                for(int k = 0; k < y; k++){
+                    finalRotatedXArrayTwo[i][j] += xRotationArrayConstants[i][k]*initialPositionsArraybeforeXRot[k][j];
+                }
+            }  
+        }
+        System.out.println("XMultiply of both matrix : ");
+            for(int i = 0; i < x; i++) {
+                for(int j = 0; j < y; j++) {
+                    System.out.print(" "+finalRotatedXArrayTwo[i][j]);
+                }  
+                System.out.println();
+            }
+        //END X ROTATION MATRIX Molecule Two
+        //START Y ROTATION MATRIX Molecule Two
+        System.out.println("YMatrix 1 : ");
+        for(int i = 0; i < x; i++) {
+            for(int j = 0; j < x; j++) {
+                System.out.print(" "+ yRotationArrayConstants[i][j]);
+            }
+        System.out.println();
+        }  
+        System.out.println("YMatrix 2 : ");
+        for(int i = 0; i < y; i++) {
+            for(int j = 0; j < y; j++) {
+            System.out.print(" "+finalRotatedXArrayTwo[i][j]);
+        }  
+            System.out.println();
+        }
+        for(int i = 0; i < x; i++) {
+            for(int j = 0; j < y; j++) {
+                for(int k = 0; k < y; k++){
+                    finalRotatedYArrayTwo[i][j] += yRotationArrayConstants[i][k]*finalRotatedXArrayTwo[k][j];
+                }
+            }  
+        }
+        System.out.println("YMultiply of both matrix : ");
+            for(int i = 0; i < x; i++) {
+                for(int j = 0; j < x; j++) {
+                    System.out.print(" "+finalRotatedYArrayTwo[i][j]);
+                }  
+                System.out.println();
+            }
+        //END Y ROTATION MATRIX Molecule Two
+        //START Z ROTATION MATRIX Molecule Two
+        System.out.println("ZMatrix 1 : ");
+        for(int i = 0; i < x; i++) {
+            for(int j = 0; j < x; j++) {
+                System.out.print(" "+ zRotationArrayConstants[i][j]);
+            }
+        System.out.println();
+        }  
+        System.out.println("ZMatrix 2 : ");
+        for(int i = 0; i < y; i++) {
+            for(int j = 0; j < y; j++) {
+            System.out.print(" "+finalRotatedYArrayTwo[i][j]);
+        }  
+            System.out.println();
+        }
+        for(int i = 0; i < x; i++) {
+            for(int j = 0; j < y; j++) {
+                for(int k = 0; k < y; k++){
+                    finalRotatedZArrayTwo[i][j] += zRotationArrayConstants[i][k]*finalRotatedYArrayTwo[k][j];
+                }
+            }  
+        }
+        System.out.println("ZMultiply of both matrix : ");
+            for(int i = 0; i < x; i++) {
+                for(int j = 0; j < y; j++) {
+                    System.out.print(" "+finalRotatedZArrayTwo[i][j]);
+                }  
+                System.out.println();
+            }
+        //END Z ROTATION MATRIX Molecule Two
     }
     
-    public static void randomTranslateXYZ() {
-      int m, n, c, d;
-      System.out.println("Enter the number of rows and columns of matrix");
-      m = 3; //column definition
-      n = 3; //row definition
- 
-      double first[][] = new double[m][n];
-      finalTranslatedArrayOne = new double[m][n];
-      
-      System.out.println("Enter the elements of first matrix");
- 
-      for (  c = 0 ; c < m ; c++ ) {
-         for ( d = 0 ; d < n ; d++ ) {
-            first[c][d] = randomTranslationConstant;
-         }
-      }
- 
-      for ( c = 0 ; c < m ; c++ ) {
-         for ( d = 0 ; d < n ; d++ ) {
-             finalTranslatedArrayOne[c][d] = first[c][d] + finalRotatedZArrayOne[c][d];  //replace '+' with '-' to subtract matrices
-         }
-      }
- 
-      System.out.println("Sum of entered matrices:-");
- 
-      for ( c = 0 ; c < m ; c++ ) {
-         for ( d = 0 ; d < n ; d++ ) {
-            System.out.print(finalTranslatedArrayOne[c][d]+"\t");
-         }
-         System.out.println();
-      }
+    public static void randomTranslateMolOneXYZ() {
+        int m, n, c, d;
+        m = 3; //column definition
+        n = 3; //row definition
+        System.out.println("The number of rows and columns of matrix: " + m);
+
+        double first[][] = new double[m][n];
+        finalTranslatedArrayOne = new double[m][n];
+
+        for (  c = 0 ; c < m ; c++ ) {
+           for ( d = 0 ; d < n ; d++ ) {
+              first[c][d] = randomTranslationConstant;
+           }
+        }
+
+        for ( c = 0 ; c < m ; c++ ) {
+           for ( d = 0 ; d < n ; d++ ) {
+               finalTranslatedArrayOne[c][d] = first[c][d] + finalRotatedZArrayOne[c][d];  //replace '+' with '-' to subtract matrices
+           }
+        }
+
+        System.out.println("Sum of entered matrices:-");
+
+        for ( c = 0 ; c < m ; c++ ) {
+           for ( d = 0 ; d < n ; d++ ) {
+              System.out.print(finalTranslatedArrayOne[c][d]+"\t");
+           }
+           System.out.println();
+        }
+    }
+    public static void randomTranslateMolTwoXYZ() {
+        int m, n, c, d;
+        m = 3; //column definition
+        n = 3; //row definition
+        System.out.println("The number of rows and columns of matrix: " + m);
+
+        double first[][] = new double[m][n];
+        finalTranslatedArrayTwo = new double[m][n];
+
+        for (  c = 0 ; c < m ; c++ ) {
+           for ( d = 0 ; d < n ; d++ ) {
+              first[c][d] = randomTranslationConstant;
+           }
+        }
+
+        for ( c = 0 ; c < m ; c++ ) {
+           for ( d = 0 ; d < n ; d++ ) {
+               finalTranslatedArrayTwo[c][d] = first[c][d] + finalTranslatedArrayTwo[c][d];  //replace '+' with '-' to subtract matrices
+           }
+        }
+
+        System.out.println("Sum of entered matrices:-");
+
+        for ( c = 0 ; c < m ; c++ ) {
+           for ( d = 0 ; d < n ; d++ ) {
+              System.out.print(finalTranslatedArrayTwo[c][d]+"\t");
+           }
+           System.out.println();
+        }
     }
     
      public static void randomThetaGenerator(double rangeStart, double rangeEnd, Random thetaRandom) {
