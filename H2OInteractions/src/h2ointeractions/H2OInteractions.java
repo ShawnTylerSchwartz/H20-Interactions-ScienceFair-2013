@@ -1,9 +1,7 @@
 package h2ointeractions;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
@@ -120,11 +118,6 @@ public class H2OInteractions {
     //Randomly Generated Numbers
     public static double randomTheta;
     public static double randomTranslationConstant;
-    
-    //Time Stamp
-    public static String timeStamp;
-    private static int fileNumber = 0;
-
     
     public static void main(String[] args) throws IOException {
             Date date = new Date() ;
