@@ -225,8 +225,36 @@ public class H2OInteractions {
     
     public static double calculatePointCharge(double moleculeOneX1, double moleculeOneY1, double moleculeOneZ1, double moleculeTwoX2, double moleculeTwoY2, double moleculeTwoZ2) {
         double distance = Math.sqrt(Math.sqrt(Math.pow(moleculeTwoX2-moleculeOneX1, 2) + Math.pow(moleculeTwoY2-moleculeOneY1, 2) + Math.pow(moleculeTwoZ2-moleculeOneZ1, 2)));
-        pointChargeEnergy = Constants.kConstant*Constants.KhydrogenPointCharge*Constants.KoxygenPointCharge/Math.abs(distance);
-        return pointChargeEnergy;
+        if(moleculeOneX1 == finalTransLeftHydrogenOneXPos && moleculeTwoX2 == finalTransLeftHydrogenTwoXPos) { //For first iteration
+            pointChargeEnergy = Constants.kConstant*Constants.KhydrogenPointCharge*Constants.KhydrogenPointCharge/Math.abs(distance);
+            return pointChargeEnergy;
+        } else if(moleculeOneX1 == finalTransLeftHydrogenOneXPos && moleculeTwoX2 == finalTransRightHydrogenTwoXPos) { //For second iteration
+            pointChargeEnergy = Constants.kConstant*Constants.KhydrogenPointCharge*Constants.KhydrogenPointCharge/Math.abs(distance);
+            return pointChargeEnergy;
+        } else if(moleculeOneX1 == finalTransRightHydrogenOneXPos && moleculeTwoX2 == finalTransLeftHydrogenTwoXPos) { //For third iteration
+            pointChargeEnergy = Constants.kConstant*Constants.KhydrogenPointCharge*Constants.KhydrogenPointCharge/Math.abs(distance);
+            return pointChargeEnergy;
+        } else if(moleculeOneX1 == finalTransOxygenOneXPos && moleculeTwoX2 == finalTransOxygenTwoXPos) { //For fourth iteration
+            pointChargeEnergy = Constants.kConstant*Constants.KoxygenPointCharge*Constants.KoxygenPointCharge/Math.abs(distance);
+            return pointChargeEnergy;
+        } else if(moleculeOneX1 == finalTransOxygenOneXPos && moleculeTwoX2 == finalTransOxygenTwoXPos) { //For fifth iteration
+            pointChargeEnergy = Constants.kConstant*Constants.KoxygenPointCharge*Constants.KoxygenPointCharge/Math.abs(distance);
+            return pointChargeEnergy;
+        } else if(moleculeOneX1 == finalTransLeftHydrogenOneXPos && moleculeTwoX2 == finalTransOxygenOneXPos) { //For sixth iteration
+            pointChargeEnergy = Constants.kConstant*Constants.KhydrogenPointCharge*Constants.KoxygenPointCharge/Math.abs(distance);
+            return pointChargeEnergy;
+        } else if(moleculeOneX1 == finalTransRightHydrogenOneXPos && moleculeTwoX2 == finalTransOxygenTwoXPos) { //For seventh iteration
+            pointChargeEnergy = Constants.kConstant*Constants.KhydrogenPointCharge*Constants.KoxygenPointCharge/Math.abs(distance);
+            return pointChargeEnergy;
+        } else if(moleculeOneX1 == finalTransLeftHydrogenTwoXPos && moleculeTwoX2 == finalTransOxygenOneXPos) { //For eighth iteration
+            pointChargeEnergy = Constants.kConstant*Constants.KhydrogenPointCharge*Constants.KoxygenPointCharge/Math.abs(distance);
+            return pointChargeEnergy;
+        } else if(moleculeOneX1 == finalTransRightHydrogenOneXPos && moleculeTwoX2 == finalTransOxygenOneXPos) { //For ninth iteration
+            pointChargeEnergy = Constants.kConstant*Constants.KhydrogenPointCharge*Constants.KoxygenPointCharge/Math.abs(distance);
+            return pointChargeEnergy;
+        } else {
+            return 0;
+        }
     }
     
     public static double caclulateDipoleMoment(double momentOne, double momentTwo, double distance) {
