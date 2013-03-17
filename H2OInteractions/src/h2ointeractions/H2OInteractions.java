@@ -53,8 +53,6 @@ public class H2OInteractions {
     public static String arrayContentstoPrint;
     
     //Variables for Calculations
-    public static double distance;
-    public static double totalDistance;
     public static double singleUsableDistance;
     public static double pointChargeEnergy;
     public static double totalPointChargeEnergy;
@@ -265,15 +263,15 @@ public class H2OInteractions {
         System.out.println("distance: " + distance);
         System.out.println(readFile("newoutput.txt"));
         
-        firstCalcIteration = calculatePointCharge(finalTransLeftHydrogenOneXPos, finalTransLeftHydrogenOneXPos, finalTransLeftHydrogenOneYPos, finalTransLeftHydrogenTwoXPos, finalTransLeftHydrogenOneZPos, finalTransLeftHydrogenTwoZPos, distance);
-        secondCalcIteration = calculatePointCharge(finalTransLeftHydrogenOneXPos, finalTransLeftHydrogenOneYPos, finalTransLeftHydrogenOneZPos, finalTransRightHydrogenTwoXPos, finalTransRightHydrogenTwoYPos, finalTransRightHydrogenTwoZPos, distance);
-        thirdCalcIteration = calculatePointCharge(finalTransRightHydrogenOneXPos, finalTransRightHydrogenOneYPos, finalTransRightHydrogenOneZPos, finalTransLeftHydrogenTwoXPos, finalTransLeftHydrogenTwoYPos, finalTransLeftHydrogenTwoZPos, distance);
-        fourthCalcIterartion = calculatePointCharge(finalTransRightHydrogenOneXPos, finalTransRightHydrogenOneZPos, finalTransRightHydrogenOneYPos, finalTransRightHydrogenTwoXPos, finalTransRightHydrogenTwoYPos, finalTransRightHydrogenTwoZPos, distance);
-        fifthCalcIteration = calculatePointCharge(finalTransOxygenOneXPos, finalTransOxygenOneYPos, finalTransOxygenOneZPos, finalTransOxygenTwoXPos, finalTransOxygenTwoYPos, finalTransOxygenTwoZPos, distance);
-        sixthCalcIteration = calculatePointCharge(finalTransLeftHydrogenOneXPos, finalTransLeftHydrogenOneYPos, finalTransLeftHydrogenOneZPos, finalTransOxygenOneXPos, finalTransOxygenOneYPos, finalTransOxygenOneZPos, distance);
-        seventhCalcIteration = calculatePointCharge(finalTransRightHydrogenOneXPos, finalTransRightHydrogenOneYPos, finalTransRightHydrogenOneZPos, finalTransOxygenTwoXPos, finalTransOxygenTwoYPos, finalTransOxygenTwoZPos, distance);
-        eighthCalcIteration = calculatePointCharge(finalTransLeftHydrogenTwoXPos, finalTransLeftHydrogenTwoYPos, finalTransLeftHydrogenTwoZPos, finalTransOxygenOneXPos, finalTransOxygenOneYPos, finalTransOxygenOneZPos, distance);
-        ninthCalcIteration = calculatePointCharge(finalTransRightHydrogenOneXPos, finalTransRightHydrogenOneYPos, finalTransRightHydrogenOneZPos, finalTransOxygenOneXPos, finalTransOxygenOneYPos, finalTransOxygenOneZPos, distance);
+        firstCalcIteration = calculatePointCharge(finalTransLeftHydrogenOneXPos, finalTransLeftHydrogenOneXPos, finalTransLeftHydrogenOneYPos, finalTransLeftHydrogenTwoXPos, finalTransLeftHydrogenOneZPos, finalTransLeftHydrogenTwoZPos);
+        secondCalcIteration = calculatePointCharge(finalTransLeftHydrogenOneXPos, finalTransLeftHydrogenOneYPos, finalTransLeftHydrogenOneZPos, finalTransRightHydrogenTwoXPos, finalTransRightHydrogenTwoYPos, finalTransRightHydrogenTwoZPos);
+        thirdCalcIteration = calculatePointCharge(finalTransRightHydrogenOneXPos, finalTransRightHydrogenOneYPos, finalTransRightHydrogenOneZPos, finalTransLeftHydrogenTwoXPos, finalTransLeftHydrogenTwoYPos, finalTransLeftHydrogenTwoZPos);
+        fourthCalcIterartion = calculatePointCharge(finalTransRightHydrogenOneXPos, finalTransRightHydrogenOneZPos, finalTransRightHydrogenOneYPos, finalTransRightHydrogenTwoXPos, finalTransRightHydrogenTwoYPos, finalTransRightHydrogenTwoZPos);
+        fifthCalcIteration = calculatePointCharge(finalTransOxygenOneXPos, finalTransOxygenOneYPos, finalTransOxygenOneZPos, finalTransOxygenTwoXPos, finalTransOxygenTwoYPos, finalTransOxygenTwoZPos);
+        sixthCalcIteration = calculatePointCharge(finalTransLeftHydrogenOneXPos, finalTransLeftHydrogenOneYPos, finalTransLeftHydrogenOneZPos, finalTransOxygenOneXPos, finalTransOxygenOneYPos, finalTransOxygenOneZPos);
+        seventhCalcIteration = calculatePointCharge(finalTransRightHydrogenOneXPos, finalTransRightHydrogenOneYPos, finalTransRightHydrogenOneZPos, finalTransOxygenTwoXPos, finalTransOxygenTwoYPos, finalTransOxygenTwoZPos);
+        eighthCalcIteration = calculatePointCharge(finalTransLeftHydrogenTwoXPos, finalTransLeftHydrogenTwoYPos, finalTransLeftHydrogenTwoZPos, finalTransOxygenOneXPos, finalTransOxygenOneYPos, finalTransOxygenOneZPos);
+        ninthCalcIteration = calculatePointCharge(finalTransRightHydrogenOneXPos, finalTransRightHydrogenOneYPos, finalTransRightHydrogenOneZPos, finalTransOxygenOneXPos, finalTransOxygenOneYPos, finalTransOxygenOneZPos);
         totalPointChargeEnergy = firstCalcIteration+secondCalcIteration+thirdCalcIteration+fourthCalcIterartion+fifthCalcIteration+sixthCalcIteration
                 +seventhCalcIteration+eighthCalcIteration+ninthCalcIteration;
         
@@ -297,8 +295,8 @@ public class H2OInteractions {
         System.out.println(userInput);
     }
     
-    public static double calculatePointCharge(double moleculeOneX1, double moleculeOneY1, double moleculeOneZ1, double moleculeTwoX2, double moleculeTwoY2, double moleculeTwoZ2, double distance) {
-        distance = Math.sqrt(Math.sqrt(Math.pow(moleculeTwoX2-moleculeOneX1, 2) + Math.pow(moleculeTwoY2-moleculeOneY1, 2) + Math.pow(moleculeTwoZ2-moleculeOneZ1, 2)));
+    public static double calculatePointCharge(double moleculeOneX1, double moleculeOneY1, double moleculeOneZ1, double moleculeTwoX2, double moleculeTwoY2, double moleculeTwoZ2) {
+        double distance = Math.sqrt(Math.sqrt(Math.pow(moleculeTwoX2-moleculeOneX1, 2) + Math.pow(moleculeTwoY2-moleculeOneY1, 2) + Math.pow(moleculeTwoZ2-moleculeOneZ1, 2)));
         pointChargeEnergy = Constants.kConstant*Constants.KhydrogenPointCharge*Constants.KoxygenPointCharge/Math.abs(distance);
         return pointChargeEnergy;
     }
