@@ -1,10 +1,14 @@
 package h2ointeractions;
 
 import java.io.BufferedWriter;
+import java.io.Console;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
@@ -123,6 +127,10 @@ public class H2OInteractions {
     public static double randomTranslationConstant;
     
     public static void main(String[] args) throws IOException {
+            File file = new File("output.txt");  
+            FileOutputStream fis = new FileOutputStream(file);  
+            PrintStream out = new PrintStream(fis);  
+            System.setOut(out);
             
             double rangeStartRandomTheta = 0;
             double rangeEndRandomTheta = Math.toRadians(360);
@@ -232,7 +240,11 @@ public class H2OInteractions {
                 +seventhCalcIteration+eighthCalcIteration+ninthCalcIteration;
         
         System.out.println("Sigma Point Charge Calculation: " + totalPointChargeEnergy);
+        
+  
     }
+    
+
    
     private static String readFile(String path) throws IOException {
         FileInputStream inputStream = new FileInputStream(new File(path));
