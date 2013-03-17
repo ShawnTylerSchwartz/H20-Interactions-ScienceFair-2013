@@ -11,6 +11,7 @@ import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 /**
@@ -83,19 +84,15 @@ public class H2OInteractions {
     public static double initialRightHydrogenTwoz2Pos;
     
     //Iteration Energy Storing Variables
-    public static double firstIteration; //leftHydrogenOnex1y1 --> leftHydrogenTwox2y2
-    public static double secondIteration; //leftHydrogenOnex1y1 --> rightHydrogenTwox2y2
-    public static double thirdIteration; //rightHydrogenOnex1y1 --> leftHydrogenTwox2y2
-    public static double fourthIterartion; //rightHydrogenOnex1y1 --> rightHydrogenTwox2y2
-    public static double fifthIteration; //oxygenOnex1y1 --> oxygenTwox2y2
-    public static double sixthIteration; //leftHydrogenOnex1y1 --> oxygenOnex1y1
-    public static double seventhIteration; //rightHydrogenOnex1y1 --> oxygenTwox2y2
-    public static double eighthIteration; //leftHydrogenTwox2y2 --> oxygenOnex1y1
-    public static double ninthIteration; //rightHydrogenTwox2y2 --> oxygenOnex1y1
-    
-    //Constants to (-->) Variables
-    public static double hydrogenCharge = Constants.KhydrogenPointCharge;
-    public static double oxygenCharge = Constants.KoxygenPointCharge;
+    public static double firstCalcIteration; //leftHydrogenOnex1y1 --> leftHydrogenTwox2y2
+    public static double secondCalcIteration; //leftHydrogenOnex1y1 --> rightHydrogenTwox2y2
+    public static double thirdCalcIteration; //rightHydrogenOnex1y1 --> leftHydrogenTwox2y2
+    public static double fourthCalcIterartion; //rightHydrogenOnex1y1 --> rightHydrogenTwox2y2
+    public static double fifthCalcIteration; //oxygenOnex1y1 --> oxygenTwox2y2
+    public static double sixthCalcIteration; //leftHydrogenOnex1y1 --> oxygenOnex1y1
+    public static double seventhCalcIteration; //rightHydrogenOnex1y1 --> oxygenTwox2y2
+    public static double eighthCalcIteration; //leftHydrogenTwox2y2 --> oxygenOnex1y1
+    public static double ninthCalcIteration; //rightHydrogenTwox2y2 --> oxygenOnex1y1
     
     public static double finalRotatedXArrayOne[][];
     public static double finalRotatedYArrayOne[][];
@@ -103,6 +100,9 @@ public class H2OInteractions {
     public static double finalRotatedXArrayTwo[][];
     public static double finalRotatedYArrayTwo[][];
     public static double finalRotatedZArrayTwo[][];
+    
+    public static double finalTranslatedArrayOne[][];
+    public static double finalTranslatedArrayTwo[][];
     
     public static double finalLeftHydrogenOneXPos;
     public static double finalLeftHydrogenOneYPos;
@@ -124,40 +124,69 @@ public class H2OInteractions {
     public static double finalRightHydrogenTwoYPos;
     public static double finalRightHydrogenTwoZPos;
     
-    public static double randomNumber;
+    public static double randomTheta;
+    public static double randomTranslationConstant;
       
     
     public static void main(String[] args) throws IOException {
             
-            double rangeStart = 0;
-            //double rangeEnd = Math.toRadians(Math.PI);
-            //double rangeEnd = 12341234;
-            double rangeEnd = Math.toRadians(360);
-            Random random = new Random();
-            randomAngleGenerator(rangeStart, rangeEnd, random);
-
-            System.out.println("POO"+randomNumber);
-            rotationAboutXYZMatrix(randomNumber); //(theta)
+            double rangeStartRandomTheta = 0;
+            double rangeEndRandomTheta = Math.toRadians(360);
+            Random randomGenRandomTheta = new Random();
+            randomThetaGenerator(rangeStartRandomTheta, rangeEndRandomTheta, randomGenRandomTheta);
+            System.out.println("Random Angle: " + randomTheta);
+            rotationAboutXYZMatrix(randomTheta); //(theta)
             
-            finalLeftHydrogenOneXPos = finalRotatedZArrayOne[0][0];
-            finalLeftHydrogenOneYPos = finalRotatedZArrayOne[0][1];
-            finalLeftHydrogenOneZPos = finalRotatedZArrayOne[0][2];
-            finalOxygenOneXPos = finalRotatedZArrayOne[1][0];
-            finalOxygenOneYPos = finalRotatedZArrayOne[1][1];
-            finalOxygenOneZPos = finalRotatedZArrayOne[1][2];
-            finalRightHydrogenOneXPos = finalRotatedZArrayOne[2][0];
-            finalRightHydrogenOneYPos = finalRotatedZArrayOne[2][1];
-            finalRighyHydrogenOneZPos = finalRotatedZArrayOne[2][2];
+            double rangeStartRandomTranslationConstant = 3;
+            double rangeEndRandomTranslationConstant = 350;
+            Random randomGenTranslationConstant = new Random();
+            randomTranslationConstantGenerator(rangeStartRandomTranslationConstant, rangeEndRandomTranslationConstant,randomGenTranslationConstant);
+            System.out.println("Random Translation Constant: " +randomTranslationConstant);
             
-            finalLeftHydrogenTwoXPos = finalRotatedZArrayTwo[0][0];
-            finalLeftHydrogenTwoYPos = finalRotatedZArrayTwo[0][1];
-            finalLeftHydrogenTwoZPos = finalRotatedZArrayTwo[0][2];
-            finalOxygenTwoXPos = finalRotatedZArrayTwo[1][0];
-            finalOxygenTwoYPos = finalRotatedZArrayTwo[1][1];
-            finalOxygenTwoZPos = finalRotatedZArrayTwo[1][2];
-            finalRightHydrogenTwoXPos = finalRotatedZArrayTwo[2][0];
-            finalRightHydrogenTwoYPos = finalRotatedZArrayTwo[2][1];
-            finalRightHydrogenTwoZPos = finalRotatedZArrayTwo[2][2];
+            randomTranslateXYZ();
+            
+//            finalLeftHydrogenOneXPos = finalRotatedZArrayOne[0][0];
+//            finalLeftHydrogenOneYPos = finalRotatedZArrayOne[0][1];
+//            finalLeftHydrogenOneZPos = finalRotatedZArrayOne[0][2];
+//            finalOxygenOneXPos = finalRotatedZArrayOne[1][0];
+//            finalOxygenOneYPos = finalRotatedZArrayOne[1][1];
+//            finalOxygenOneZPos = finalRotatedZArrayOne[1][2];
+//            finalRightHydrogenOneXPos = finalRotatedZArrayOne[2][0];
+//            finalRightHydrogenOneYPos = finalRotatedZArrayOne[2][1];
+//            finalRighyHydrogenOneZPos = finalRotatedZArrayOne[2][2];
+//            
+//            finalLeftHydrogenTwoXPos = finalRotatedZArrayTwo[0][0];
+//            finalLeftHydrogenTwoYPos = finalRotatedZArrayTwo[0][1];
+//            finalLeftHydrogenTwoZPos = finalRotatedZArrayTwo[0][2];
+//            finalOxygenTwoXPos = finalRotatedZArrayTwo[1][0];
+//            finalOxygenTwoYPos = finalRotatedZArrayTwo[1][1];
+//            finalOxygenTwoZPos = finalRotatedZArrayTwo[1][2];
+//            finalRightHydrogenTwoXPos = finalRotatedZArrayTwo[2][0];
+//            finalRightHydrogenTwoYPos = finalRotatedZArrayTwo[2][1];
+//            finalRightHydrogenTwoZPos = finalRotatedZArrayTwo[2][2];
+            
+            finalLeftHydrogenOneXPos = finalTranslatedArrayOne[0][0];
+            finalLeftHydrogenOneYPos = finalTranslatedArrayOne[0][1];
+            finalLeftHydrogenOneZPos = finalTranslatedArrayOne[0][2];
+            finalOxygenOneXPos = finalTranslatedArrayOne[1][0];
+            finalOxygenOneYPos = finalTranslatedArrayOne[1][1];
+            finalOxygenOneZPos = finalTranslatedArrayOne[1][2];
+            finalRightHydrogenOneXPos = finalTranslatedArrayOne[2][0];
+            finalRightHydrogenOneYPos = finalTranslatedArrayOne[2][1];
+            finalRighyHydrogenOneZPos = finalTranslatedArrayOne[2][2];
+            
+            finalLeftHydrogenTwoXPos = finalTranslatedArrayTwo[0][0];
+            finalLeftHydrogenTwoYPos = finalTranslatedArrayTwo[0][1];
+            finalLeftHydrogenTwoZPos = finalTranslatedArrayTwo[0][2];
+            finalOxygenTwoXPos = finalTranslatedArrayTwo[1][0];
+            finalOxygenTwoYPos = finalTranslatedArrayTwo[1][1];
+            finalOxygenTwoZPos = finalTranslatedArrayTwo[1][2];
+            finalRightHydrogenTwoXPos = finalTranslatedArrayTwo[2][0];
+            finalRightHydrogenTwoYPos = finalTranslatedArrayTwo[2][1];
+            finalRightHydrogenTwoZPos = finalTranslatedArrayTwo[2][2];
+            
+            //Translate function goes here...
+            
             
 
         try {
@@ -172,12 +201,12 @@ public class H2OInteractions {
             initialRightHydrogenTwoCoord = new double[3];
                  
 //            for(int i = 0; i < 3; i++) {
-//                initialLeftHydrogenOneCoord[i] = (double) (Math.random()*4);
-//                initialRightHydrogenOneCoord[i] = (double) (Math.random()*4);
-//                initialOxygenOneCoord[i] = (double) (Math.random()*4);
-//                initialOxygenTwoCoord[i] = (double) (Math.random()*4);
-//                initialLeftHydrogenTwoCoord[i] = (double) (Math.random()*4);
-//                initialRightHydrogenTwoCoord[i] = (double) (Math.random()*4);
+//                initialLeftHydrogenOneCoord[i] = (double) (Math.randomGenRandomTheta()*4);
+//                initialRightHydrogenOneCoord[i] = (double) (Math.randomGenRandomTheta()*4);
+//                initialOxygenOneCoord[i] = (double) (Math.randomGenRandomTheta()*4);
+//                initialOxygenTwoCoord[i] = (double) (Math.randomGenRandomTheta()*4);
+//                initialLeftHydrogenTwoCoord[i] = (double) (Math.randomGenRandomTheta()*4);
+//                initialRightHydrogenTwoCoord[i] = (double) (Math.randomGenRandomTheta()*4);
 //            }
 
             //Initial Position of First Water Molecule in System
@@ -248,17 +277,17 @@ public class H2OInteractions {
 //        System.out.println("This is my calculation: " + calculatePointCharge(initialLeftHydrogenOnex1Pos, initialLeftHydrogenTwox2Pos, initialLeftHydrogenOney1Pos, initialLeftHydrogenTwoy2Pos, initialLeftHydrogenOnez1Pos, initialLeftHydrogenTwoz2Pos, distance));
         System.out.println(readFile("newoutput.txt"));
         
-        firstIteration = calculatePointCharge(initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnez1Pos, initialOxygenTwoz2Pos, distance);
-        secondIteration = calculatePointCharge(initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnez1Pos, initialOxygenTwoz2Pos, distance);
-        thirdIteration = calculatePointCharge(initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnez1Pos, initialOxygenTwoz2Pos, distance);
-        fourthIterartion = calculatePointCharge(initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnez1Pos, initialOxygenTwoz2Pos, distance);
-        fifthIteration = calculatePointCharge(initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnez1Pos, initialOxygenTwoz2Pos, distance);
-        sixthIteration = calculatePointCharge(initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnez1Pos, initialOxygenTwoz2Pos, distance);
-        seventhIteration = calculatePointCharge(initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnez1Pos, initialOxygenTwoz2Pos, distance);
-        eighthIteration = calculatePointCharge(initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnez1Pos, initialOxygenTwoz2Pos, distance);
-        ninthIteration = calculatePointCharge(initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnez1Pos, initialOxygenTwoz2Pos, distance);
-        totalPointChargeEnergy = firstIteration+secondIteration+thirdIteration+fourthIterartion+fifthIteration+sixthIteration
-                +seventhIteration+eighthIteration+ninthIteration;
+        firstCalcIteration = calculatePointCharge(initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnez1Pos, initialOxygenTwoz2Pos, distance);
+        secondCalcIteration = calculatePointCharge(initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnez1Pos, initialOxygenTwoz2Pos, distance);
+        thirdCalcIteration = calculatePointCharge(initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnez1Pos, initialOxygenTwoz2Pos, distance);
+        fourthCalcIterartion = calculatePointCharge(initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnez1Pos, initialOxygenTwoz2Pos, distance);
+        fifthCalcIteration = calculatePointCharge(initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnez1Pos, initialOxygenTwoz2Pos, distance);
+        sixthCalcIteration = calculatePointCharge(initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnez1Pos, initialOxygenTwoz2Pos, distance);
+        seventhCalcIteration = calculatePointCharge(initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnez1Pos, initialOxygenTwoz2Pos, distance);
+        eighthCalcIteration = calculatePointCharge(initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnez1Pos, initialOxygenTwoz2Pos, distance);
+        ninthCalcIteration = calculatePointCharge(initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnex1Pos, initialOxygenTwox2Pos, initialOxygenOnez1Pos, initialOxygenTwoz2Pos, distance);
+        totalPointChargeEnergy = firstCalcIteration+secondCalcIteration+thirdCalcIteration+fourthCalcIterartion+fifthCalcIteration+sixthCalcIteration
+                +seventhCalcIteration+eighthCalcIteration+ninthCalcIteration;
         
         System.out.println("Sigma Point Charge Calculation: " + totalPointChargeEnergy);
     }
@@ -282,7 +311,7 @@ public class H2OInteractions {
     
     public static double calculatePointCharge(double moleculeOneX1, double moleculeTwoX2, double moleculeOneY1, double moleculeTwoY2, double moleculeOneZ1, double moleculeTwoZ2, double distance) {
         distance = Math.sqrt(Math.sqrt(Math.pow(moleculeTwoX2-moleculeOneX1, 2) + Math.pow(moleculeTwoY2-moleculeOneY1, 2) + Math.pow(moleculeTwoZ2-moleculeOneZ1, 2)));
-        pointChargeEnergy = Constants.kConstant*hydrogenCharge*oxygenCharge/Math.abs(distance);
+        pointChargeEnergy = Constants.kConstant*Constants.KhydrogenPointCharge*Constants.KoxygenPointCharge/Math.abs(distance);
         return pointChargeEnergy;
     }
     
@@ -399,15 +428,60 @@ public class H2OInteractions {
             //END Z ROTATION MATRIX
     }
     
-     private static void randomAngleGenerator(double aStart, double aEnd, Random aRandom) {
-        if(aStart > aEnd) {
+    public static void randomTranslateXYZ() {
+      int m, n, c, d;
+      System.out.println("Enter the number of rows and columns of matrix");
+      m = 3; //column definition
+      n = 3; //row definition
+ 
+      double first[][] = new double[m][n];
+      finalTranslatedArrayOne = new double[m][n];
+      
+      System.out.println("Enter the elements of first matrix");
+ 
+      for (  c = 0 ; c < m ; c++ ) {
+         for ( d = 0 ; d < n ; d++ ) {
+            first[c][d] = randomTranslationConstant;
+         }
+      }
+ 
+      for ( c = 0 ; c < m ; c++ ) {
+         for ( d = 0 ; d < n ; d++ ) {
+             finalTranslatedArrayOne[c][d] = first[c][d] + finalRotatedZArrayOne[c][d];  //replace '+' with '-' to subtract matrices
+         }
+      }
+ 
+      System.out.println("Sum of entered matrices:-");
+ 
+      for ( c = 0 ; c < m ; c++ ) {
+         for ( d = 0 ; d < n ; d++ ) {
+            System.out.print(finalTranslatedArrayOne[c][d]+"\t");
+         }
+         System.out.println();
+      }
+    }
+    
+     public static void randomThetaGenerator(double rangeStart, double rangeEnd, Random thetaRandom) {
+        if(rangeStart > rangeEnd) {
             throw new IllegalArgumentException("Start cannot exceed End.");
         }
         //get the range, casting to long to avoid overflow problems
-        long range = (long)aEnd - (long)aStart + 1;
+        long range = (long)rangeEnd - (long)rangeStart + 1;
         // compute a fraction of the range, 0 <= frac < range
-        long fraction = (long)(range * aRandom.nextDouble());
-        randomNumber =  (double)(fraction + aStart);    
-        sopl("Generated : " + randomNumber);
+        long fraction = (long)(range * thetaRandom.nextDouble());
+        randomTheta =  (double)(fraction + rangeStart);    
+        sopl("Generated : " + randomTheta);
+    }
+     
+     public static void randomTranslationConstantGenerator(double rangeStart, double rangeEnd, Random thetaRandom) {
+        if(rangeStart > rangeEnd) {
+            throw new IllegalArgumentException("Start cannot exceed End.");
+        }
+        //get the range, casting to long to avoid overflow problems
+        long range = (long)rangeEnd - (long)rangeStart + 1;
+        // compute a fraction of the range, 0 <= frac < range
+        long fraction = (long)(range * thetaRandom.nextDouble());
+        randomTranslationConstant =  (double)(fraction + rangeStart);    
+        sopl("Generated : " + randomTranslationConstant);
     }
 }
