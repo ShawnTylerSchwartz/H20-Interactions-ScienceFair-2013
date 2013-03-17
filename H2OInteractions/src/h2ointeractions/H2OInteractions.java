@@ -188,10 +188,6 @@ public class H2OInteractions {
             finalTransRightHydrogenTwoYPos = finalTranslatedArrayTwo[2][1];
             finalTransRightHydrogenTwoZPos = finalTranslatedArrayTwo[2][2];
             
-        try {
-            // Create file 
-            FileWriter fstream = new FileWriter("newoutput.txt");
-            BufferedWriter outputWriter = new BufferedWriter(fstream);
             initialLeftHydrogenOneCoord = new double[3];
             initialRightHydrogenOneCoord = new double[3];
             initialOxygenOneCoord = new double[3];
@@ -211,21 +207,6 @@ public class H2OInteractions {
             initialRightHydrogenOneCoord[0] = 96;
             initialRightHydrogenOneCoord[1] = 0;
             initialRightHydrogenOneCoord[2] = 0;
-            
-            outputWriter.write("The randomly generated molecules: \n\n");
-            outputWriter.write("leftHydrogenOneCoord: " + Arrays.toString(initialLeftHydrogenOneCoord) + "\n");
-            outputWriter.write("rightHydrogenOneCoord: " + Arrays.toString(initialRightHydrogenOneCoord) + "\n");
-            outputWriter.write("oxygenOneCoord: " + Arrays.toString(initialOxygenOneCoord) + "\n");
-            outputWriter.write("oxygenTwoCoord: " + Arrays.toString(initialOxygenTwoCoord) + "\n");
-            outputWriter.write("leftHydrogenTwoCoord: " + Arrays.toString(initialLeftHydrogenTwoCoord) + "\n");
-            outputWriter.write("rightHydrogenTwoCoord: " + Arrays.toString(initialRightHydrogenTwoCoord) + "\n");
-            outputWriter.close();
-        } 
-        catch (Exception e){ //Catch exception if any
-            System.err.println("Error: " + e.getMessage());
-        }
-        
-        System.out.println(readFile("newoutput.txt"));
         
         firstCalcIteration = calculatePointCharge(finalTransLeftHydrogenOneXPos, finalTransLeftHydrogenOneXPos, finalTransLeftHydrogenOneYPos, finalTransLeftHydrogenTwoXPos, finalTransLeftHydrogenOneZPos, finalTransLeftHydrogenTwoZPos);
         secondCalcIteration = calculatePointCharge(finalTransLeftHydrogenOneXPos, finalTransLeftHydrogenOneYPos, finalTransLeftHydrogenOneZPos, finalTransRightHydrogenTwoXPos, finalTransRightHydrogenTwoYPos, finalTransRightHydrogenTwoZPos);
@@ -240,23 +221,6 @@ public class H2OInteractions {
                 +seventhCalcIteration+eighthCalcIteration+ninthCalcIteration;
         
         System.out.println("Sigma Point Charge Calculation: " + totalPointChargeEnergy);
-        
-  
-    }
-    
-
-   
-    private static String readFile(String path) throws IOException {
-        FileInputStream inputStream = new FileInputStream(new File(path));
-        try {
-            FileChannel fc = inputStream.getChannel();
-            MappedByteBuffer bb = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size());
-            //Instead of using default, pass in a decoder.
-            return Charset.defaultCharset().decode(bb).toString();
-        }
-        finally {
-            inputStream.close();
-        }
     }
     
     private static void sopl(String userInput){
