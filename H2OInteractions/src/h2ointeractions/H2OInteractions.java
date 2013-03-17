@@ -127,22 +127,11 @@ public class H2OInteractions {
 
     
     public static void main(String[] args) throws IOException {
-//            timeStamp = currentTimestamp();
-//            int incrementer = 3;
-//            File file = new File("output" + incrementer+ ".txt");  
-//            FileOutputStream fis = new FileOutputStream(file);
-//            PrintStream out = new PrintStream(fis);  
-//            System.setOut(out);
             Date date = new Date() ;
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss") ;
             File file = new File(dateFormat.format(date) + ".txt") ;
-//            FileWriter fstream = new FileWriter(file);
             FileOutputStream fis = new FileOutputStream(file);
             PrintStream out = new PrintStream(fis);  
-            System.setOut(out);
-//            BufferedWriter out = new BufferedWriter(fstream);
-//            out.write("Writing to file");
-//            out.close();
             System.setOut(out);
             
             System.out.println(date);
