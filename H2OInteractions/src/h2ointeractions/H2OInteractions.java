@@ -1,18 +1,13 @@
 package h2ointeractions;
 
 import java.io.BufferedWriter;
-import java.io.Console;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.nio.MappedByteBuffer;
-import java.nio.channels.FileChannel;
-import java.nio.charset.Charset;
-import java.util.Arrays;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 /**
@@ -126,12 +121,31 @@ public class H2OInteractions {
     public static double randomTheta;
     public static double randomTranslationConstant;
     
+    //Time Stamp
+    public static String timeStamp;
+    private static int fileNumber = 0;
+
+    
     public static void main(String[] args) throws IOException {
-            File file = new File("output.txt");  
-            FileOutputStream fis = new FileOutputStream(file);  
+//            timeStamp = currentTimestamp();
+//            int incrementer = 3;
+//            File file = new File("output" + incrementer+ ".txt");  
+//            FileOutputStream fis = new FileOutputStream(file);
+//            PrintStream out = new PrintStream(fis);  
+//            System.setOut(out);
+            Date date = new Date() ;
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss") ;
+            File file = new File(dateFormat.format(date) + ".txt") ;
+//            FileWriter fstream = new FileWriter(file);
+            FileOutputStream fis = new FileOutputStream(file);
             PrintStream out = new PrintStream(fis);  
             System.setOut(out);
+//            BufferedWriter out = new BufferedWriter(fstream);
+//            out.write("Writing to file");
+//            out.close();
+            System.setOut(out);
             
+            System.out.println(date);
             double rangeStartRandomTheta = 0;
             double rangeEndRandomTheta = Math.toRadians(360);
             Random randomGenRandomTheta = new Random();
@@ -458,7 +472,7 @@ public class H2OInteractions {
            }
         }
 
-        System.out.println("Sum of entered matrices:-");
+        System.out.println("Sum of entered matrices:");
 
         for ( c = 0 ; c < m ; c++ ) {
            for ( d = 0 ; d < n ; d++ ) {
