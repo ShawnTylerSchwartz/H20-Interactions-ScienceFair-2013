@@ -46,11 +46,18 @@ The random angle is generated on a scale from 0.1 to π radians. Finally, the co
 Using this calculated distance, the Columb force calculation is then used. The value from the equation is stored into a variable and returned by the method. All of the nine iterations are each stored into their own variable, and the sum of them is calculated to display the final system Columb energy.
 
 ![Columb Energy Equation](http://108.171.190.117/formulas/EnergyEquation.png)
+
 E = Energy
+
 K = Columb constant (value stored in program)
+
 Delta One (1) = Point Charge of Hydrogen (value stored in program)
+
 Delta Two (2) = Point Charge of Oxygen (value stored in program) 
+
 D = Distance (from distance formula above)
+
+
 
 ![Final Columb System Energy](http://108.171.190.117/formulas/FinalColumbSystemEnergy.png)
 
