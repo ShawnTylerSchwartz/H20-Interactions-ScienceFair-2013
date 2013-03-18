@@ -53,7 +53,6 @@ Delta Two (2) = Point Charge of Oxygen (value stored in program)
 D = Distance (from distance formula above)
 
 ![Final Columb System Energy](http://108.171.190.117/formulas/FinalColumbSystemEnergy.png)
-**Final Columb System Energy**
 
 After generating fifteen different system situations, each geometry was plotted along with the system energy. The geometry of the water molecules is the independent variable. The final system energy is the dependent variable. Jmol molecular rendering software was used to draw each model of each generated water molecule geometry, considering angle and position of the molecules in the system.
 
