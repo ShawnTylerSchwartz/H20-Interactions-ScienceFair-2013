@@ -1,7 +1,0 @@
-Sun Mar 17 22:13:33 PDT 2013
-Random Angle: 1.0
-
-
-Random Angle: 1.0
-Random Translation Constant: 32.0
-The number of rows and columns of matrix: 3

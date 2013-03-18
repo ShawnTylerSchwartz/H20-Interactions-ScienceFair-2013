@@ -1,6 +1,0 @@
-Sun Mar 17 22:12:47 PDT 2013
-Random Angle: 1.0
-
-
-Random Angle: 1.0
-Random Translation Constant: 22.0

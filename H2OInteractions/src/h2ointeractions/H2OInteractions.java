@@ -492,6 +492,7 @@ public class H2OInteractions {
            System.out.println();
         }
     }
+    
     public static void randomTranslateMolTwoXYZ() {
         int m, n, c, d;
         m = 3; //column definition
