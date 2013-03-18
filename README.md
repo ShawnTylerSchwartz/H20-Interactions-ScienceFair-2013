@@ -45,18 +45,17 @@ The random angle is generated on a scale from 0.1 to π radians. Finally, the co
 
 Using this calculated distance, the Columb force calculation is then used. The value from the equation is stored into a variable and returned by the method. All of the nine iterations are each stored into their own variable, and the sum of them is calculated to display the final system Columb energy.
 
-E=(kδ_1 δ_2)/d
+![Columb Energy Equation](http://108.171.190.117/formulas/EnergyEquation.png)
 E = Energy
 K = Columb constant (value stored in program)
 Delta One (1) = Point Charge of Hydrogen (value stored in program)
 Delta Two (2) = Point Charge of Oxygen (value stored in program) 
 D = Distance (from distance formula above)
 
-∑_(n=0)^8▒〖iteration〗_n =
-
-Final Columb System Energy
+![Final Columb System Energy](http://108.171.190.117/formulas/FinalColumbSystemEnergy.png)
+**Final Columb System Energy**
 
 After generating fifteen different system situations, each geometry was plotted along with the system energy. The geometry of the water molecules is the independent variable. The final system energy is the dependent variable. Jmol molecular rendering software was used to draw each model of each generated water molecule geometry, considering angle and position of the molecules in the system.
 
 The trends can be seen on the results page.
-![Alt text](/path/to/img.jpg)
+
