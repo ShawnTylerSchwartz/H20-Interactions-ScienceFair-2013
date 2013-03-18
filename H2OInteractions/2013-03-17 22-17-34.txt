@@ -1,0 +1,114 @@
+Sun Mar 17 22:17:34 PDT 2013
+Random Angle: 0.0
+
+
+Random Angle: 0.0
+
+Rotate (X) Molecule One Constants Matrix: 
+ 1.0 0.0 0.0
+ 0.0 1.0 -0.0
+ 0.0 0.0 1.0
+
+Rotate (X) Molecule One Matrix Coordinates: 
+ -24.0 0.0 93.0
+ 0.0 0.0 0.0
+ 96.0 0.0 0.0
+
+Calculated Rotated (X) Molecule One Matrix Coordinates: 
+ -24.0 0.0 93.0
+ 0.0 0.0 0.0
+ 96.0 0.0 0.0
+
+Rotate (Y) Molecule One Constants Matrix: 
+ 1.0 0.0 -0.0
+ 0.0 1.0 0.0
+ 0.0 0.0 1.0
+
+Rotate (Y) Molecule One Matrix Coordinates: 
+ -24.0 0.0 93.0
+ 0.0 0.0 0.0
+ 96.0 0.0 0.0
+
+Calculated Rotated (Y) Molecule One Matrix Coordinates: 
+ -24.0 0.0 93.0
+ 0.0 0.0 0.0
+ 96.0 0.0 0.0
+
+Rotate (Z) Molecule One Constants Matrix: 
+ 1.0 0.0 0.0
+ -0.0 1.0 0.0
+ 0.0 0.0 1.0
+
+Rotate (Z) Molecule One Matrix Coordinates: 
+ -24.0 0.0 93.0
+ 0.0 0.0 0.0
+ 96.0 0.0 0.0
+
+
+Final Calculated Rotated (Z) Molecule One Matrix Coordinates: 
+ -24.0 0.0 93.0
+ 0.0 0.0 0.0
+ 96.0 0.0 0.0
+
+Rotate (X) Molecule Two Constants Matrix: 
+ 1.0 0.0 0.0
+ 0.0 1.0 -0.0
+ 0.0 0.0 1.0
+
+Rotate (X) Molecule Two Matrix Coordinates: 
+ -24.0 0.0 93.0
+ 0.0 0.0 0.0
+ 96.0 0.0 0.0
+
+Calculated Rotated (X) Molecule Two Matrix Coordinates: 
+ -24.0 0.0 93.0
+ 0.0 0.0 0.0
+ 96.0 0.0 0.0
+
+Rotate (Y) Molecule Two Constants Matrix: 
+ 1.0 0.0 -0.0
+ 0.0 1.0 0.0
+ 0.0 0.0 1.0
+
+Rotate (Y) Molecule Two Matrix Coordinates: 
+ -24.0 0.0 93.0
+ 0.0 0.0 0.0
+ 96.0 0.0 0.0
+
+Calculated Rotated (Y) Molecule Two Matrix Coordinates:
+ -24.0 0.0 93.0
+ 0.0 0.0 0.0
+ 96.0 0.0 0.0
+
+Rotate (Z) Molecule Two Constants Matrix: 
+ 1.0 0.0 0.0
+ -0.0 1.0 0.0
+ 0.0 0.0 1.0
+
+Rotate (Z) Molecule Two Matrix Coordinates: 
+ -24.0 0.0 93.0
+ 0.0 0.0 0.0
+ 96.0 0.0 0.0
+
+
+Final Calculated Rotated (Z) Molecule Two Matrix Coordinates: 
+ -24.0 0.0 93.0
+ 0.0 0.0 0.0
+ 96.0 0.0 0.0
+Random Translation Constant: 64.0
+
+
+Final Molecule One Coordinate: 
+40.0	64.0	157.0	
+64.0	64.0	64.0	
+160.0	64.0	64.0	
+
+
+Final Molecule One Coordinate: 
+64.0	64.0	64.0	
+64.0	64.0	64.0	
+64.0	64.0	64.0	
+
+
+
+Sigma Point Charge Calculation: Infinity

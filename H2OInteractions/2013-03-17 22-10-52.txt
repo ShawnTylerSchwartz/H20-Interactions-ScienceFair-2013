@@ -1,0 +1,12 @@
+Sun Mar 17 22:10:52 PDT 2013
+Random Angle: 0.0
+
+
+Random Angle: 0.0
+Random Translation Constant: 17.0
+
+
+Final Molecule One Coordinate: 
+17.0	17.0	17.0	
+17.0	17.0	17.0	
+17.0	17.0	17.0	
