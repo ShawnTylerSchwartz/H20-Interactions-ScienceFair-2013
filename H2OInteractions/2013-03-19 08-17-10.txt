@@ -1,0 +1,120 @@
+Tue Mar 19 08:17:10 PDT 2013
+
+
+Random Angle Molecule One: 4.0
+
+
+Random Angle Molecule Two: 0.0
+
+Rotate (X) Molecule One Constants Matrix: 
+ 1.0 0.0 0.0
+ 0.0 -0.6536436208636119 0.7568024953079282
+ 0.0 -0.7568024953079282 -0.6536436208636119
+
+Rotate (X) Molecule One Matrix Coordinates: 
+ -24.0 0.0 93.0
+ 0.0 0.0 0.0
+ 96.0 0.0 0.0
+
+Calculated Rotated (X) Molecule One Matrix Coordinates: 
+ -24.0 0.0 93.0
+ 72.6530395495611 0.0 0.0
+ -62.74978760290675 0.0 0.0
+
+Rotate (Y) Molecule One Constants Matrix: 
+ -0.6536436208636119 0.0 0.7568024953079282
+ 0.0 1.0 0.0
+ -0.7568024953079282 0.0 -0.6536436208636119
+
+Rotate (Y) Molecule One Matrix Coordinates: 
+ -24.0 0.0 93.0
+ 72.6530395495611 0.0 0.0
+ -62.74978760290675 0.0 0.0
+
+Calculated Rotated (Y) Molecule One Matrix Coordinates: 
+ -31.801748937195637 0.0 -60.78885674031591
+ 72.6530395495611 0.0 0.0
+ 59.17925826457683 0.0 -70.38263206363732
+
+Rotate (Z) Molecule One Constants Matrix: 
+ -0.6536436208636119 -0.7568024953079282 0.0
+ 0.7568024953079282 -0.6536436208636119 0.0
+ 0.0 0.0 1.0
+
+Rotate (Z) Molecule One Matrix Coordinates: 
+ -31.801748937195637 0.0 -60.78885674031591
+ 72.6530395495611 0.0 0.0
+ 59.17925826457683 0.0 -70.38263206363732
+
+
+Final Calculated Rotated (Z) Molecule One Matrix Coordinates: 
+ -34.19699129770936 0.0 39.73424842789947
+ -71.55683878874822 0.0 -46.00515846798725
+ 59.17925826457683 0.0 -70.38263206363732
+
+Rotate (X) Molecule Two Constants Matrix: 
+ 1.0 0.0 0.0
+ 0.0 1.0 -0.0
+ 0.0 0.0 1.0
+
+Rotate (X) Molecule Two Matrix Coordinates: 
+ -24.0 0.0 93.0
+ 0.0 0.0 0.0
+ 96.0 0.0 0.0
+
+Calculated Rotated (X) Molecule Two Matrix Coordinates: 
+ -24.0 0.0 93.0
+ 0.0 0.0 0.0
+ 96.0 0.0 0.0
+
+Rotate (Y) Molecule Two Constants Matrix: 
+ 1.0 0.0 -0.0
+ 0.0 1.0 0.0
+ 0.0 0.0 1.0
+
+Rotate (Y) Molecule Two Matrix Coordinates: 
+ -24.0 0.0 93.0
+ 0.0 0.0 0.0
+ 96.0 0.0 0.0
+
+Calculated Rotated (Y) Molecule Two Matrix Coordinates:
+ -24.0 0.0 93.0
+ 0.0 0.0 0.0
+ 96.0 0.0 0.0
+
+Rotate (Z) Molecule Two Constants Matrix: 
+ 1.0 0.0 0.0
+ -0.0 1.0 0.0
+ 0.0 0.0 1.0
+
+Rotate (Z) Molecule Two Matrix Coordinates: 
+ -24.0 0.0 93.0
+ 0.0 0.0 0.0
+ 96.0 0.0 0.0
+
+
+Final Calculated Rotated (Z) Molecule Two Matrix Coordinates: 
+ -24.0 0.0 93.0
+ 0.0 0.0 0.0
+ 96.0 0.0 0.0
+
+
+Random Translation Constant MOLECULE ONE (1): 269.0
+
+Random Translation Constant MOLECULE TWO (2): 275.0
+
+
+Final Molecule One Coordinates: 
+234.80300870229064	269.0	308.7342484278995	
+197.44316121125178	269.0	222.99484153201274	
+328.17925826457684	269.0	198.61736793636268	
+
+
+Final Molecule Two Coordinates: 
+251.0	275.0	368.0	
+275.0	275.0	275.0	
+371.0	275.0	275.0	
+
+
+
+Sigma Point Charge Calculation: -0.025162891809997187

@@ -116,7 +116,8 @@ public class H2OInteractions {
         public static double finalTransRightHydrogenTwoZPos;
     
     //Randomly Generated Numbers
-    public static double randomTheta;
+    public static double randomThetaMolONE;
+    public static double randomThetaMolTWO;
     public static double randomTranslationConstantMolONE;
     public static double randomTranslationConstantMolTWO;
     
@@ -129,16 +130,27 @@ public class H2OInteractions {
         System.setOut(out);
 
         System.out.println(date);
-        double rangeStartRandomTheta = 0;
-        double rangeEndRandomTheta = Math.toRadians(360);
-        Random randomGenRandomTheta = new Random();
-        randomThetaGenerator(rangeStartRandomTheta, rangeEndRandomTheta, randomGenRandomTheta);
-//        System.out.println("\n\nRandom Angle: " + randomTheta);
-        rotationAboutXYZMatrix(randomTheta); //(theta)
+//        double rangeStartRandomTheta = 0.0;
+//        double rangeEndRandomTheta = 2.0*Math.PI;
+//        Random randomGenRandomTheta = new Random();
+//        randomThetaGeneratorMolONE(rangeStartRandomTheta, rangeEndRandomTheta, randomGenRandomTheta);
+//        randomThetaGeneratorMolTWO(rangeStartRandomTheta, rangeEndRandomTheta, randomGenRandomTheta);
+        double start = 0.0;
+        double end = 2.0*Math.PI;
+        double randomMolONE = new Random().nextDouble();
+        randomThetaMolONE = start + (randomMolONE * (end - start));
+        sopl("\n\nRandom Angle Molecule One: " + randomThetaMolONE);
+        
+        double randomMolTWO = new Random().nextDouble();
+
+        randomThetaMolTWO = start + (randomMolTWO * (end - start));
+        sopl("\n\nRandom Angle Molecule Two: " + randomThetaMolTWO);
+
+        rotationAboutXYZMatrix(randomThetaMolONE, randomThetaMolTWO); //(theta)
 
 
-        double rangeStartRandomTranslationConstant = 3;
-        double rangeEndRandomTranslationConstant = 350;
+        double rangeStartRandomTranslationConstant = 100; //PM
+        double rangeEndRandomTranslationConstant = 500; //PM
         Random randomGenTranslationConstant = new Random();
         randomTranslationConstantGeneratorONE(rangeStartRandomTranslationConstant, rangeEndRandomTranslationConstant,randomGenTranslationConstant);
         randomTranslationConstantGeneratorTWO(rangeStartRandomTranslationConstant, rangeEndRandomTranslationConstant, randomGenTranslationConstant);
@@ -218,7 +230,7 @@ public class H2OInteractions {
         totalPointChargeEnergy = firstCalcIteration+secondCalcIteration+thirdCalcIteration+fourthCalcIterartion+fifthCalcIteration+sixthCalcIteration
                 +seventhCalcIteration+eighthCalcIteration+ninthCalcIteration;
 
-        System.out.println("\n\n\nSigma Point Charge Calculation: " + totalPointChargeEnergy);
+        System.out.println("\n\n\nSigma Point Charge Calculation: " + totalPointChargeEnergy + " Joules");
     }
     
     private static void sopl(String userInput){
@@ -228,31 +240,31 @@ public class H2OInteractions {
     public static double calculatePointCharge(double moleculeOneX1, double moleculeOneY1, double moleculeOneZ1, double moleculeTwoX2, double moleculeTwoY2, double moleculeTwoZ2) {
         double distance = Math.sqrt(Math.sqrt(Math.pow(moleculeTwoX2-moleculeOneX1, 2) + Math.pow(moleculeTwoY2-moleculeOneY1, 2) + Math.pow(moleculeTwoZ2-moleculeOneZ1, 2)));
         if(moleculeOneX1 == finalTransLeftHydrogenOneXPos && moleculeTwoX2 == finalTransLeftHydrogenTwoXPos) { //For first iteration
-            pointChargeEnergy = Constants.kConstant*Constants.KhydrogenPointCharge*Constants.KhydrogenPointCharge/Math.abs(distance);
+            pointChargeEnergy = Constants.Kconstant*Constants.KhydrogenPartialCharge*Constants.KhydrogenPartialCharge/(Math.abs(distance)*Constants.KdistanceConversionFactor);
             return pointChargeEnergy;
         } else if(moleculeOneX1 == finalTransLeftHydrogenOneXPos && moleculeTwoX2 == finalTransRightHydrogenTwoXPos) { //For second iteration
-            pointChargeEnergy = Constants.kConstant*Constants.KhydrogenPointCharge*Constants.KhydrogenPointCharge/Math.abs(distance);
+            pointChargeEnergy = Constants.Kconstant*Constants.KhydrogenPartialCharge*Constants.KhydrogenPartialCharge/(Math.abs(distance)*Constants.KdistanceConversionFactor);
             return pointChargeEnergy;
         } else if(moleculeOneX1 == finalTransRightHydrogenOneXPos && moleculeTwoX2 == finalTransLeftHydrogenTwoXPos) { //For third iteration
-            pointChargeEnergy = Constants.kConstant*Constants.KhydrogenPointCharge*Constants.KhydrogenPointCharge/Math.abs(distance);
+            pointChargeEnergy = Constants.Kconstant*Constants.KhydrogenPartialCharge*Constants.KhydrogenPartialCharge/(Math.abs(distance)*Constants.KdistanceConversionFactor);
             return pointChargeEnergy;
         } else if(moleculeOneX1 == finalTransOxygenOneXPos && moleculeTwoX2 == finalTransOxygenTwoXPos) { //For fourth iteration
-            pointChargeEnergy = Constants.kConstant*Constants.KoxygenPointCharge*Constants.KoxygenPointCharge/Math.abs(distance);
+            pointChargeEnergy = Constants.Kconstant*Constants.KoxygenPartialCharge*Constants.KoxygenPartialCharge/(Math.abs(distance)*Constants.KdistanceConversionFactor);
             return pointChargeEnergy;
         } else if(moleculeOneX1 == finalTransOxygenOneXPos && moleculeTwoX2 == finalTransOxygenTwoXPos) { //For fifth iteration
-            pointChargeEnergy = Constants.kConstant*Constants.KoxygenPointCharge*Constants.KoxygenPointCharge/Math.abs(distance);
+            pointChargeEnergy = Constants.Kconstant*Constants.KoxygenPartialCharge*Constants.KoxygenPartialCharge/(Math.abs(distance)*Constants.KdistanceConversionFactor);
             return pointChargeEnergy;
         } else if(moleculeOneX1 == finalTransLeftHydrogenOneXPos && moleculeTwoX2 == finalTransOxygenOneXPos) { //For sixth iteration
-            pointChargeEnergy = Constants.kConstant*Constants.KhydrogenPointCharge*Constants.KoxygenPointCharge/Math.abs(distance);
+            pointChargeEnergy = Constants.Kconstant*Constants.KhydrogenPartialCharge*Constants.KoxygenPartialCharge/(Math.abs(distance)*Constants.KdistanceConversionFactor);
             return pointChargeEnergy;
         } else if(moleculeOneX1 == finalTransRightHydrogenOneXPos && moleculeTwoX2 == finalTransOxygenTwoXPos) { //For seventh iteration
-            pointChargeEnergy = Constants.kConstant*Constants.KhydrogenPointCharge*Constants.KoxygenPointCharge/Math.abs(distance);
+            pointChargeEnergy = Constants.Kconstant*Constants.KhydrogenPartialCharge*Constants.KoxygenPartialCharge/(Math.abs(distance)*Constants.KdistanceConversionFactor);
             return pointChargeEnergy;
         } else if(moleculeOneX1 == finalTransLeftHydrogenTwoXPos && moleculeTwoX2 == finalTransOxygenOneXPos) { //For eighth iteration
-            pointChargeEnergy = Constants.kConstant*Constants.KhydrogenPointCharge*Constants.KoxygenPointCharge/Math.abs(distance);
+            pointChargeEnergy = Constants.Kconstant*Constants.KhydrogenPartialCharge*Constants.KoxygenPartialCharge/(Math.abs(distance)*Constants.KdistanceConversionFactor);
             return pointChargeEnergy;
         } else if(moleculeOneX1 == finalTransRightHydrogenOneXPos && moleculeTwoX2 == finalTransOxygenOneXPos) { //For ninth iteration
-            pointChargeEnergy = Constants.kConstant*Constants.KhydrogenPointCharge*Constants.KoxygenPointCharge/Math.abs(distance);
+            pointChargeEnergy = Constants.Kconstant*Constants.KhydrogenPartialCharge*Constants.KoxygenPartialCharge/(Math.abs(distance)*Constants.KdistanceConversionFactor);
             return pointChargeEnergy;
         } else {
             return 0;
@@ -263,13 +275,22 @@ public class H2OInteractions {
         return 0;
     }
     
-    public static void rotationAboutXYZMatrix(double theta) {    
-        double cosTheta = Math.cos(theta);
-        double sinTheta = Math.sin(theta);
-        double xRotationArrayConstants[][] = {{1,0,0},{0,cosTheta,-sinTheta},{0,sinTheta,cosTheta}}; //TOPtoBOTTOM
-        double initialPositionsArraybeforeXRot[][] = {{-24,0,93},{0,0,0},{96,0,0}}; //xyz
-        double yRotationArrayConstants[][] = {{cosTheta,0,-sinTheta},{0,1,0},{sinTheta,0,cosTheta}}; //TOPtoBOTTOM
-        double zRotationArrayConstants[][] = {{cosTheta,sinTheta,0},{-sinTheta,cosTheta,0},{0,0,1}}; //TOPtoBOTTOM
+    public static void rotationAboutXYZMatrix(double thetaMolONE, double thetaMolTWO) {    
+        double cosThetaMolONE = Math.cos(thetaMolONE);
+        double sinThetaMolONE = Math.sin(thetaMolONE);
+        double cosThetaMolTWO = Math.cos(thetaMolTWO);
+        double sinThetaMolTWO = Math.sin(thetaMolTWO);
+//        double initialPositionsArraybeforeXRot[][] = {{-24,0,93},{0,0,0},{96,0,0}}; //xyz
+        double initialPositionsArraybeforeXRot[][] = {{((-Math.sin(75.5)*9.6E-11)),0,((Math.sin(75.5)*9.6E-11))},{0,0,0},{9.6E-11,0,0}}; //xyz
+
+        double xRotationArrayConstantsMolONE[][] = {{1,0,0},{0,cosThetaMolONE,-sinThetaMolONE},{0,sinThetaMolONE,cosThetaMolONE}}; //TOPtoBOTTOM
+        double yRotationArrayConstantsMolONE[][] = {{cosThetaMolONE,0,-sinThetaMolONE},{0,1,0},{sinThetaMolONE,0,cosThetaMolONE}}; //TOPtoBOTTOM
+        double zRotationArrayConstantsMolONE[][] = {{cosThetaMolONE,sinThetaMolONE,0},{-sinThetaMolONE,cosThetaMolONE,0},{0,0,1}}; //TOPtoBOTTOM
+        
+        double xRotationArrayConstantsMolTWO[][] = {{1,0,0},{0,cosThetaMolTWO,-sinThetaMolTWO},{0,sinThetaMolTWO,cosThetaMolTWO}}; //TOPtoBOTTOM
+        double yRotationArrayConstantsMolTWO[][] = {{cosThetaMolTWO,0,-sinThetaMolTWO},{0,1,0},{sinThetaMolTWO,0,cosThetaMolTWO}}; //TOPtoBOTTOM
+        double zRotationArrayConstantsMolTWO[][] = {{cosThetaMolTWO,sinThetaMolTWO,0},{-sinThetaMolTWO,cosThetaMolTWO,0},{0,0,1}}; //TOPtoBOTTOM
+        
         finalRotatedXArrayOne = new double[3][3];
         finalRotatedYArrayOne = new double[3][3];
         finalRotatedZArrayOne = new double[3][3];
@@ -283,7 +304,7 @@ public class H2OInteractions {
         System.out.println("\nRotate (X) Molecule One Constants Matrix: ");
         for(int i = 0; i < x; i++) {
             for(int j = 0; j < x; j++) {
-                System.out.print(" "+ xRotationArrayConstants[i][j]);
+                System.out.print(" "+ xRotationArrayConstantsMolONE[i][j]);
             }
         System.out.println();
         }  
@@ -298,7 +319,7 @@ public class H2OInteractions {
         for(int i = 0; i < x; i++) {
             for(int j = 0; j < y; j++) {
                 for(int k = 0; k < y; k++){
-                    finalRotatedXArrayOne[i][j] += xRotationArrayConstants[i][k]*initialPositionsArraybeforeXRot[k][j];
+                    finalRotatedXArrayOne[i][j] += xRotationArrayConstantsMolONE[i][k]*initialPositionsArraybeforeXRot[k][j];
                 }
             }  
         }
@@ -314,7 +335,7 @@ public class H2OInteractions {
         System.out.println("\nRotate (Y) Molecule One Constants Matrix: ");
         for(int i = 0; i < x; i++) {
             for(int j = 0; j < x; j++) {
-                System.out.print(" "+ yRotationArrayConstants[i][j]);
+                System.out.print(" "+ yRotationArrayConstantsMolONE[i][j]);
             }
         System.out.println();
         }  
@@ -328,7 +349,7 @@ public class H2OInteractions {
         for(int i = 0; i < x; i++) {
             for(int j = 0; j < y; j++) {
                 for(int k = 0; k < y; k++){
-                    finalRotatedYArrayOne[i][j] += yRotationArrayConstants[i][k]*finalRotatedXArrayOne[k][j];
+                    finalRotatedYArrayOne[i][j] += yRotationArrayConstantsMolONE[i][k]*finalRotatedXArrayOne[k][j];
                 }
             }  
         }
@@ -344,7 +365,7 @@ public class H2OInteractions {
         System.out.println("\nRotate (Z) Molecule One Constants Matrix: ");
         for(int i = 0; i < x; i++) {
             for(int j = 0; j < x; j++) {
-                System.out.print(" "+ zRotationArrayConstants[i][j]);
+                System.out.print(" "+ zRotationArrayConstantsMolONE[i][j]);
             }
         System.out.println();
         }  
@@ -358,7 +379,7 @@ public class H2OInteractions {
         for(int i = 0; i < x; i++) {
             for(int j = 0; j < y; j++) {
                 for(int k = 0; k < y; k++){
-                    finalRotatedZArrayOne[i][j] += zRotationArrayConstants[i][k]*finalRotatedYArrayOne[k][j];
+                    finalRotatedZArrayOne[i][j] += zRotationArrayConstantsMolONE[i][k]*finalRotatedYArrayOne[k][j];
                 }
             }  
         }
@@ -375,7 +396,7 @@ public class H2OInteractions {
         System.out.println("\nRotate (X) Molecule Two Constants Matrix: ");
         for(int i = 0; i < x; i++) {
             for(int j = 0; j < x; j++) {
-                System.out.print(" "+ xRotationArrayConstants[i][j]);
+                System.out.print(" "+ xRotationArrayConstantsMolTWO[i][j]);
             }
         System.out.println();
         }  
@@ -389,7 +410,7 @@ public class H2OInteractions {
         for(int i = 0; i < x; i++) {
             for(int j = 0; j < y; j++) {
                 for(int k = 0; k < y; k++){
-                    finalRotatedXArrayTwo[i][j] += xRotationArrayConstants[i][k]*initialPositionsArraybeforeXRot[k][j];
+                    finalRotatedXArrayTwo[i][j] += xRotationArrayConstantsMolTWO[i][k]*initialPositionsArraybeforeXRot[k][j];
                 }
             }  
         }
@@ -405,7 +426,7 @@ public class H2OInteractions {
         System.out.println("\nRotate (Y) Molecule Two Constants Matrix: ");
         for(int i = 0; i < x; i++) {
             for(int j = 0; j < x; j++) {
-                System.out.print(" "+ yRotationArrayConstants[i][j]);
+                System.out.print(" "+ yRotationArrayConstantsMolTWO[i][j]);
             }
         System.out.println();
         }  
@@ -419,7 +440,7 @@ public class H2OInteractions {
         for(int i = 0; i < x; i++) {
             for(int j = 0; j < y; j++) {
                 for(int k = 0; k < y; k++){
-                    finalRotatedYArrayTwo[i][j] += yRotationArrayConstants[i][k]*finalRotatedXArrayTwo[k][j];
+                    finalRotatedYArrayTwo[i][j] += yRotationArrayConstantsMolTWO[i][k]*finalRotatedXArrayTwo[k][j];
                 }
             }  
         }
@@ -435,7 +456,7 @@ public class H2OInteractions {
         System.out.println("\nRotate (Z) Molecule Two Constants Matrix: ");
         for(int i = 0; i < x; i++) {
             for(int j = 0; j < x; j++) {
-                System.out.print(" "+ zRotationArrayConstants[i][j]);
+                System.out.print(" "+ zRotationArrayConstantsMolTWO[i][j]);
             }
         System.out.println();
         }  
@@ -449,7 +470,7 @@ public class H2OInteractions {
         for(int i = 0; i < x; i++) {
             for(int j = 0; j < y; j++) {
                 for(int k = 0; k < y; k++){
-                    finalRotatedZArrayTwo[i][j] += zRotationArrayConstants[i][k]*finalRotatedYArrayTwo[k][j];
+                    finalRotatedZArrayTwo[i][j] += zRotationArrayConstantsMolTWO[i][k]*finalRotatedYArrayTwo[k][j];
                 }
             }  
         }
@@ -523,7 +544,7 @@ public class H2OInteractions {
         }
     }
     
-     public static void randomThetaGenerator(double rangeStart, double rangeEnd, Random thetaRandom) {
+     public static void randomThetaGeneratorMolONE(double rangeStart, double rangeEnd, Random thetaRandom) {
         if(rangeStart > rangeEnd) {
             throw new IllegalArgumentException("Start cannot exceed End.");
         }
@@ -531,8 +552,20 @@ public class H2OInteractions {
         long range = (long)rangeEnd - (long)rangeStart + 1;
         // compute a fraction of the range, 0 <= frac < range
         long fraction = (long)(range * thetaRandom.nextDouble());
-        randomTheta =  (double)(fraction + rangeStart);    
-        sopl("\n\nRandom Angle: " + randomTheta);
+        randomThetaMolONE =  (double)(fraction + rangeStart);    
+        sopl("\n\nRandom Angle Molecule One: " + randomThetaMolONE);
+    }
+     
+    public static void randomThetaGeneratorMolTWO(double rangeStart, double rangeEnd, Random thetaRandom) {
+        if(rangeStart > rangeEnd) {
+            throw new IllegalArgumentException("Start cannot exceed End.");
+        }
+        //get the range, casting to long to avoid overflow problems
+        long range = (long)rangeEnd - (long)rangeStart + 1;
+        // compute a fraction of the range, 0 <= frac < range
+        long fraction = (long)(range * thetaRandom.nextDouble());
+        randomThetaMolTWO =  (double)(fraction + rangeStart);    
+        sopl("\n\nRandom Angle Molecule Two: " + randomThetaMolTWO);
     }
      
      public static void randomTranslationConstantGeneratorONE(double rangeStart, double rangeEnd, Random thetaRandom) {
@@ -543,7 +576,7 @@ public class H2OInteractions {
         long range = (long)rangeEnd - (long)rangeStart + 1;
         // compute a fraction of the range, 0 <= frac < range
         long fraction = (long)(range * thetaRandom.nextDouble());
-        randomTranslationConstantMolONE =  (double)(fraction + rangeStart);    
+        randomTranslationConstantMolONE =  (double)(fraction + rangeStart)*Constants.KdistanceConversionFactor;    
         sopl("\n\nRandom Translation Constant MOLECULE ONE (1): " + randomTranslationConstantMolONE);
     }
      
@@ -555,8 +588,18 @@ public class H2OInteractions {
         long range = (long)rangeEnd - (long)rangeStart + 1;
         // compute a fraction of the range, 0 <= frac < range
         long fraction = (long)(range * thetaRandom.nextDouble());
-        randomTranslationConstantMolTWO =  (double)(fraction + rangeStart);    
+        randomTranslationConstantMolTWO =  (double)(fraction + rangeStart)*Constants.KdistanceConversionFactor;    
         sopl("\nRandom Translation Constant MOLECULE TWO (2): " + randomTranslationConstantMolTWO);
     }
-     
+    /*
+ * check units
+ * write pdb file to be generated --> convert geometries
+// * randomization of angle to more places
+ * 
+ * life:
+ * help us understand how things dissolve in water
+ * help us understand how freezing mechanism works
+ * 
+ * what would it do in a zero grav situtation, or on a table --surface tension(ddiferent maerials) if you put water on a polorzied surface, modeling that the clump (the surface tension)
+ */ 
 }

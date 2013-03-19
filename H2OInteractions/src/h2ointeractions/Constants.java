@@ -10,10 +10,8 @@ package h2ointeractions;
  **/
 
 public class Constants {
-    public static final double kConstant = 8.9875517873681764;
-//    public static final double hydrogenDipoleMoment = 1; //TODO: Find real value.
-//    public static final double oxygenDipoleMoment = 1; //TODO: Find real value.
-
-    public static final double KhydrogenPointCharge = 0.179; //TODO: Find real value.
-    public static final double KoxygenPointCharge = -0.358; //TODO: Find real value.
+    public static final double Kconstant = 8.9875517873681764E9; //(Newtons*m^2/C^2)
+    public static final double KhydrogenPartialCharge = (2.86793800000046E-20); //Coulombs
+    public static final double KoxygenPartialCharge = (-5.73587600000092E-20); //Coulombs
+    public static final double KdistanceConversionFactor = 1E-12;
 }
