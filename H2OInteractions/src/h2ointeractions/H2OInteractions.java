@@ -591,15 +591,4 @@ public class H2OInteractions {
         randomTranslationConstantMolTWO =  (double)(fraction + rangeStart)*Constants.KdistanceConversionFactor;    
         sopl("\nRandom Translation Constant MOLECULE TWO (2): " + randomTranslationConstantMolTWO);
     }
-    /*
- * check units
- * write pdb file to be generated --> convert geometries
-// * randomization of angle to more places
- * 
- * life:
- * help us understand how things dissolve in water
- * help us understand how freezing mechanism works
- * 
- * what would it do in a zero grav situtation, or on a table --surface tension(ddiferent maerials) if you put water on a polorzied surface, modeling that the clump (the surface tension)
- */ 
 }
