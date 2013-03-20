@@ -1,0 +1,16 @@
+HEADER
+REMARK Spartan ST exported M001
+HETATM    1  H   UNK  0001      1.437  1.759  1.853
+HETATM    2  O   UNK  0001      1.894  1.759  1.779
+HETATM    3  H   UNK  0001      2.659  1.759  1.780
+
+HETATM    4  H   UNK  0001      5.036  1.14  1.216
+HETATM    5  O   UNK  0001      1.311  1.14  1.180
+HETATM    6  H   UNK  0001      1.845  1.14  1.186
+
+CONECT    1    2
+CONECT    3    2
+
+CONECT    4    5
+CONECT    6    5
+END
